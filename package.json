@@ -29,8 +29,14 @@
     "release": "bash build/git.sh && bash build/release.sh"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mengxiong10/vue2-datepicker.git"
+    "vue2-datepicker": {
+      "type": "git",
+      "url": "git+https://github.com/mengxiong10/vue2-datepicker.git"
+    },
+    "date-parse-multiformats": {
+      "type": "git",
+      "url": "git+https://github.com/likemusic/date-parse-multiformats.git"
+    }
   },
   "keywords": [
     "vue",
@@ -48,7 +54,8 @@
     "vue": "^2.5.0"
   },
   "dependencies": {
-    "date-format-parse": "^0.2.7"
+    "date-format-parse": "^0.2.7",
+    "date-parse-multiformats": "git+https://git@github.com:likemusic/date-parse-multiformats.git#master"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
