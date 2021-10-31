@@ -4357,8 +4357,8 @@
 
         return getWeek(date, options);
       },
-      parseDate: function parseDate(value, fmt) {
-        fmt = fmt || this.innerFormat;
+      parseDate: function parseDate(value, inFormat) {
+        var fmt = inFormat || this.innerFormat;
 
         if (typeof this.getFormatter('parse') === 'function') {
           return this.getFormatter('parse')(value, fmt);
@@ -4366,7 +4366,12 @@
 
         var backupDate = new Date();
         debugger;
-        var formats = [fmt].concat(this.additionalInnerFormats);
+        var formats = [fmt];
+
+        if (!inFormat) {
+          formats = formats.concat(this.additionalInnerFormats);
+        }
+
         return parseMultiFormats(value, formats, {
           locale: this.locale.formatLocale,
           backupDate: backupDate

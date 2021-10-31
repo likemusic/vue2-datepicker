@@ -250,14 +250,17 @@ export default {
       }
       return getWeek(date, options);
     },
-    parseDate(value, fmt) {
-      fmt = fmt || this.innerFormat;
+    parseDate(value, inFormat) {
+      const fmt = inFormat || this.innerFormat;
       if (typeof this.getFormatter('parse') === 'function') {
         return this.getFormatter('parse')(value, fmt);
       }
       const backupDate = new Date();
       debugger;
-      const formats = [fmt].concat(this.additionalInnerFormats);
+      let formats = [fmt];
+      if (!inFormat) {
+        formats = formats.concat(this.additionalInnerFormats);
+      }
 
       return parseMultiFormats(value, formats, { locale: this.locale.formatLocale, backupDate });
       // return parse(value, fmt, { locale: this.locale.formatLocale, backupDate });
