@@ -574,6 +574,17 @@ export default {
         </div>
       );
     },
+    getInnerFormat(format) {
+      const map = {
+        date: 'YYYY-MM-DD',
+        datetime: 'YYYY-MM-DD HH:mm:ss',
+        year: 'YYYY',
+        month: 'YYYY-MM',
+        time: 'HH:mm:ss',
+        week: 'w',
+      };
+      return map[format] || format;
+    },
   },
   render() {
     const { prefixClass, inline, disabled } = this;
@@ -616,16 +627,4 @@ export default {
       </div>
     );
   },
-  getInnerFormat(format) {
-    const map = {
-      date: 'YYYY-MM-DD',
-      datetime: 'YYYY-MM-DD HH:mm:ss',
-      year: 'YYYY',
-      month: 'YYYY-MM',
-      time: 'HH:mm:ss',
-      week: 'w',
-    };
-    return map[format] || format;
-  },
-
 };
