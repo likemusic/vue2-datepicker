@@ -256,12 +256,11 @@ export default {
         return this.getFormatter('parse')(value, fmt);
       }
       const backupDate = new Date();
-      debugger;
       let formats = [fmt];
       if (!inFormat) {
         formats = formats.concat(this.additionalInnerFormats);
       }
-      
+
       return parseMultiFormats(value, formats, { locale: this.locale.formatLocale, backupDate });
       // return parse(value, fmt, { locale: this.locale.formatLocale, backupDate });
     },

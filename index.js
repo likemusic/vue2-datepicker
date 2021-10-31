@@ -4354,7 +4354,6 @@
         }
 
         var backupDate = new Date();
-        debugger;
         var formats = [fmt];
 
         if (!inFormat) {
