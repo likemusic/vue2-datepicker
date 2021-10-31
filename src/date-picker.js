@@ -261,9 +261,7 @@ export default {
       if (!inFormat) {
         formats = formats.concat(this.additionalInnerFormats);
       }
-
-      formats.sort().reverse();
-
+      
       return parseMultiFormats(value, formats, { locale: this.locale.formatLocale, backupDate });
       // return parse(value, fmt, { locale: this.locale.formatLocale, backupDate });
     },
