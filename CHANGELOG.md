@@ -1,3 +1,8 @@
+<a name="3.10.2-m"></a>
+## [3.10.2-m](https://github.com/likemusic/vue2-datepicker/compare/v3.10.2...v3.10.2-m) (2021-10-31)
+
+
+
 <a name="3.10.2"></a>
 ## [3.10.2](https://github.com/mengxiong10/vue2-datepicker/compare/v3.10.1...v3.10.2) (2021-09-21)
 
