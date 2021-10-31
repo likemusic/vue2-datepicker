@@ -1014,22 +1014,11 @@
     }
   }
 
-  function getMatchedByLengthFormats(str, formats) {
-    var strLength = str.length;
-    var matched = formats.filter(function (format) {
-      return strLength <= format.length;
-    });
-    matched.sort();
-    return matched;
-  }
-
   function parseMultiFormats(str, formats) {
     var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-    str = str.trim();
-    var matchedByLengthFormats = getMatchedByLengthFormats(str, formats);
     var result = new Date(NaN);
 
-    var _iterator = _createForOfIteratorHelper(matchedByLengthFormats),
+    var _iterator = _createForOfIteratorHelper(formats),
         _step;
 
     try {
@@ -4372,6 +4361,7 @@
           formats = formats.concat(this.additionalInnerFormats);
         }
 
+        formats.sort().reverse();
         return parseMultiFormats(value, formats, {
           locale: this.locale.formatLocale,
           backupDate: backupDate

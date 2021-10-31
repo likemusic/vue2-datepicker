@@ -3551,6 +3551,7 @@ var DatePicker = {
         formats = formats.concat(this.additionalInnerFormats);
       }
 
+      formats.sort().reverse();
       return parseMultiFormats(value, formats, {
         locale: this.locale.formatLocale,
         backupDate: backupDate
