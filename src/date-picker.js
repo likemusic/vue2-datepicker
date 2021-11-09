@@ -66,6 +66,10 @@ export default {
     lang: {
       type: [String, Object],
     },
+    name: {
+      type: String,
+      default: 'date',
+    },
     placeholder: {
       type: String,
       default: '',
@@ -448,7 +452,7 @@ export default {
     renderInput() {
       const { prefixClass } = this;
       const props = {
-        name: 'date',
+        name: this.name,
         type: 'text',
         autocomplete: 'off',
         value: this.text,
