@@ -1,4 +1,5 @@
-import { parse, format, getWeek } from 'date-format-parse';
+import { format, getWeek } from 'date-format-parse';
+import parseMultiFormats from 'date-parse-multiformats';
 import { isValidDate, isValidRangeDate, isValidDates } from './util/date';
 import { pick, isObject, mergeDeep } from './util/base';
 import { getLocale } from './locale';
@@ -48,6 +49,10 @@ export default {
     },
     format: {
       type: String,
+    },
+    additionalFormats: {
+      type: Array,
+      default: () => [],
     },
     formatter: {
       type: Object,
@@ -164,6 +169,9 @@ export default {
       };
       return this.format || map[this.type] || map.date;
     },
+    additionalInnerFormats() {
+      return this.additionalFormats.map(additionalFormat => this.getInnerFormat(additionalFormat));
+    },
     innerValue() {
       let { value } = this;
       if (this.validMultipleType) {
@@ -246,13 +254,19 @@ export default {
       }
       return getWeek(date, options);
     },
-    parseDate(value, fmt) {
-      fmt = fmt || this.innerFormat;
+    parseDate(value, inFormat) {
+      const fmt = inFormat || this.innerFormat;
       if (typeof this.getFormatter('parse') === 'function') {
         return this.getFormatter('parse')(value, fmt);
       }
       const backupDate = new Date();
-      return parse(value, fmt, { locale: this.locale.formatLocale, backupDate });
+      let formats = [fmt];
+      if (!inFormat) {
+        formats = formats.concat(this.additionalInnerFormats);
+      }
+
+      return parseMultiFormats(value, formats, { locale: this.locale.formatLocale, backupDate });
+      // return parse(value, fmt, { locale: this.locale.formatLocale, backupDate });
     },
     formatDate(date, fmt) {
       fmt = fmt || this.innerFormat;
@@ -565,6 +579,17 @@ export default {
           ) : null}
         </div>
       );
+    },
+    getInnerFormat(outerFormat) {
+      const map = {
+        date: 'YYYY-MM-DD',
+        datetime: 'YYYY-MM-DD HH:mm:ss',
+        year: 'YYYY',
+        month: 'YYYY-MM',
+        time: 'HH:mm:ss',
+        week: 'w',
+      };
+      return map[outerFormat] || outerFormat;
     },
   },
   render() {

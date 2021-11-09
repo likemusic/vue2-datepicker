@@ -1,15 +1,21 @@
-import { getWeek, format, parse } from 'date-format-parse';
+import { getWeek, format } from 'date-format-parse';
+import parseMultiFormats from 'date-parse-multiformats';
 
 function _typeof(obj) {
-  "@babel/helpers - typeof";
+  '@babel/helpers - typeof';
 
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    _typeof = function (obj) {
+  if (typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol') {
+    _typeof = function(obj) {
       return typeof obj;
     };
   } else {
-    _typeof = function (obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    _typeof = function(obj) {
+      return obj &&
+        typeof Symbol === 'function' &&
+        obj.constructor === Symbol &&
+        obj !== Symbol.prototype
+        ? 'symbol'
+        : typeof obj;
     };
   }
 
@@ -22,7 +28,7 @@ function _defineProperty(obj, key, value) {
       value: value,
       enumerable: true,
       configurable: true,
-      writable: true
+      writable: true,
     });
   } else {
     obj[key] = value;
@@ -32,19 +38,21 @@ function _defineProperty(obj, key, value) {
 }
 
 function _extends() {
-  _extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
+  _extends =
+    Object.assign ||
+    function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
 
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
         }
       }
-    }
 
-    return target;
-  };
+      return target;
+    };
 
   return _extends.apply(this, arguments);
 }
@@ -54,9 +62,10 @@ function ownKeys(object, enumerableOnly) {
 
   if (Object.getOwnPropertySymbols) {
     var symbols = Object.getOwnPropertySymbols(object);
-    if (enumerableOnly) symbols = symbols.filter(function (sym) {
-      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-    });
+    if (enumerableOnly)
+      symbols = symbols.filter(function(sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
     keys.push.apply(keys, symbols);
   }
 
@@ -68,13 +77,13 @@ function _objectSpread2(target) {
     var source = arguments[i] != null ? arguments[i] : {};
 
     if (i % 2) {
-      ownKeys(Object(source), true).forEach(function (key) {
+      ownKeys(Object(source), true).forEach(function(key) {
         _defineProperty(target, key, source[key]);
       });
     } else if (Object.getOwnPropertyDescriptors) {
       Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
     } else {
-      ownKeys(Object(source)).forEach(function (key) {
+      ownKeys(Object(source)).forEach(function(key) {
         Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
       });
     }
@@ -120,7 +129,12 @@ function _objectWithoutProperties(source, excluded) {
 }
 
 function _slicedToArray(arr, i) {
-  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+  return (
+    _arrayWithHoles(arr) ||
+    _iterableToArrayLimit(arr, i) ||
+    _unsupportedIterableToArray(arr, i) ||
+    _nonIterableRest()
+  );
 }
 
 function _arrayWithHoles(arr) {
@@ -128,7 +142,7 @@ function _arrayWithHoles(arr) {
 }
 
 function _iterableToArrayLimit(arr, i) {
-  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+  if (typeof Symbol === 'undefined' || !(Symbol.iterator in Object(arr))) return;
   var _arr = [];
   var _n = true;
   var _d = false;
@@ -145,7 +159,7 @@ function _iterableToArrayLimit(arr, i) {
     _e = err;
   } finally {
     try {
-      if (!_n && _i["return"] != null) _i["return"]();
+      if (!_n && _i['return'] != null) _i['return']();
     } finally {
       if (_d) throw _e;
     }
@@ -156,11 +170,12 @@ function _iterableToArrayLimit(arr, i) {
 
 function _unsupportedIterableToArray(o, minLen) {
   if (!o) return;
-  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  if (typeof o === 'string') return _arrayLikeToArray(o, minLen);
   var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor) n = o.constructor.name;
-  if (n === "Map" || n === "Set") return Array.from(n);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+  if (n === 'Object' && o.constructor) n = o.constructor.name;
+  if (n === 'Map' || n === 'Set') return Array.from(n);
+  if (n === 'Arguments' || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+    return _arrayLikeToArray(o, minLen);
 }
 
 function _arrayLikeToArray(arr, len) {
@@ -172,52 +187,63 @@ function _arrayLikeToArray(arr, len) {
 }
 
 function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  throw new TypeError(
+    'Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.'
+  );
 }
 
 function _extends$1() {
-  return _extends$1 = Object.assign || function (a) {
-    for (var b, c = 1; c < arguments.length; c++) {
-      for (var d in b = arguments[c], b) {
-        Object.prototype.hasOwnProperty.call(b, d) && (a[d] = b[d]);
-      }
-    }
+  return (
+    (_extends$1 =
+      Object.assign ||
+      function(a) {
+        for (var b, c = 1; c < arguments.length; c++) {
+          for (var d in ((b = arguments[c]), b)) {
+            Object.prototype.hasOwnProperty.call(b, d) && (a[d] = b[d]);
+          }
+        }
 
-    return a;
-  }, _extends$1.apply(this, arguments);
+        return a;
+      }),
+    _extends$1.apply(this, arguments)
+  );
 }
 
-var normalMerge = ["attrs", "props", "domProps"],
-    toArrayMerge = ["class", "style", "directives"],
-    functionalMerge = ["on", "nativeOn"],
-    mergeJsxProps = function mergeJsxProps(a) {
-  return a.reduce(function (c, a) {
-    for (var b in a) {
-      if (!c[b]) c[b] = a[b];else if (-1 !== normalMerge.indexOf(b)) c[b] = _extends$1({}, c[b], a[b]);else if (-1 !== toArrayMerge.indexOf(b)) {
-        var d = c[b] instanceof Array ? c[b] : [c[b]],
+var normalMerge = ['attrs', 'props', 'domProps'],
+  toArrayMerge = ['class', 'style', 'directives'],
+  functionalMerge = ['on', 'nativeOn'],
+  mergeJsxProps = function mergeJsxProps(a) {
+    return a.reduce(function(c, a) {
+      for (var b in a) {
+        if (!c[b]) c[b] = a[b];
+        else if (-1 !== normalMerge.indexOf(b)) c[b] = _extends$1({}, c[b], a[b]);
+        else if (-1 !== toArrayMerge.indexOf(b)) {
+          var d = c[b] instanceof Array ? c[b] : [c[b]],
             e = a[b] instanceof Array ? a[b] : [a[b]];
-        c[b] = d.concat(e);
-      } else if (-1 !== functionalMerge.indexOf(b)) {
-        for (var f in a[b]) {
-          if (c[b][f]) {
-            var g = c[b][f] instanceof Array ? c[b][f] : [c[b][f]],
+          c[b] = d.concat(e);
+        } else if (-1 !== functionalMerge.indexOf(b)) {
+          for (var f in a[b]) {
+            if (c[b][f]) {
+              var g = c[b][f] instanceof Array ? c[b][f] : [c[b][f]],
                 h = a[b][f] instanceof Array ? a[b][f] : [a[b][f]];
-            c[b][f] = g.concat(h);
-          } else c[b][f] = a[b][f];
-        }
-      } else if ("hook" == b) for (var i in a[b]) {
-        c[b][i] = c[b][i] ? mergeFn(c[b][i], a[b][i]) : a[b][i];
-      } else c[b] = a[b];
-    }
+              c[b][f] = g.concat(h);
+            } else c[b][f] = a[b][f];
+          }
+        } else if ('hook' == b)
+          for (var i in a[b]) {
+            c[b][i] = c[b][i] ? mergeFn(c[b][i], a[b][i]) : a[b][i];
+          }
+        else c[b] = a[b];
+      }
 
-    return c;
-  }, {});
-},
-    mergeFn = function mergeFn(a, b) {
-  return function () {
-    a && a.apply(this, arguments), b && b.apply(this, arguments);
+      return c;
+    }, {});
+  },
+  mergeFn = function mergeFn(a, b) {
+    return function() {
+      a && a.apply(this, arguments), b && b.apply(this, arguments);
+    };
   };
-};
 
 var helper = mergeJsxProps;
 
@@ -253,7 +279,11 @@ function getValidDate(value) {
     return date;
   }
 
-  for (var _len = arguments.length, backup = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+  for (
+    var _len = arguments.length, backup = new Array(_len > 1 ? _len - 1 : 0), _key = 1;
+    _key < _len;
+    _key++
+  ) {
     backup[_key - 1] = arguments[_key];
   }
 
@@ -282,19 +312,18 @@ function startOfDay(value) {
 }
 function getCalendar(_ref) {
   var firstDayOfWeek = _ref.firstDayOfWeek,
-      year = _ref.year,
-      month = _ref.month;
+    year = _ref.year,
+    month = _ref.month;
   var arr = []; // change to the last day of the last month
 
   var calendar = createDate(year, month, 0);
   var lastDayInLastMonth = calendar.getDate(); // getDay() 0 is Sunday, 1 is Monday
 
-  var firstDayInLastMonth = lastDayInLastMonth - (calendar.getDay() + 7 - firstDayOfWeek) % 7;
+  var firstDayInLastMonth = lastDayInLastMonth - ((calendar.getDay() + 7 - firstDayOfWeek) % 7);
 
   for (var i = firstDayInLastMonth; i <= lastDayInLastMonth; i++) {
     arr.push(createDate(year, month, i - lastDayInLastMonth));
   } // change to the last day of the current month
-
 
   calendar.setMonth(month + 1, 0);
   var lastDayInCurrentMonth = calendar.getDate();
@@ -350,7 +379,7 @@ function chunk(arr, size) {
   size = size || len;
 
   while (i < len) {
-    result.push(arr.slice(i, i += size));
+    result.push(arr.slice(i, (i += size)));
   }
 
   return result;
@@ -378,7 +407,7 @@ function pick(obj, props) {
   }
 
   var res = {};
-  props.forEach(function (prop) {
+  props.forEach(function(prop) {
     if (prop in obj) {
       res[prop] = obj[prop];
     }
@@ -399,7 +428,7 @@ function mergeDeep(target, source) {
   var result = target;
 
   if (isObject(source)) {
-    Object.keys(source).forEach(function (key) {
+    Object.keys(source).forEach(function(key) {
       var value = source[key];
 
       if (isObject(value) && isObject(target[key])) {
@@ -413,32 +442,57 @@ function mergeDeep(target, source) {
   return result;
 }
 
-function unwrapExports (x) {
-	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+function unwrapExports(x) {
+  return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
 }
 
 function createCommonjsModule(fn, module) {
-	return module = { exports: {} }, fn(module, module.exports), module.exports;
+  return (module = { exports: {} }), fn(module, module.exports), module.exports;
 }
 
-var en = createCommonjsModule(function (module, exports) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-var locale = {
-  months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-  monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-  weekdays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-  weekdaysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-  weekdaysMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-  firstDayOfWeek: 0,
-  firstWeekContainsDate: 1
-};
-var _default = locale;
-exports["default"] = _default;
-module.exports = exports.default;
+var en = createCommonjsModule(function(module, exports) {
+  Object.defineProperty(exports, '__esModule', {
+    value: true,
+  });
+  exports['default'] = void 0;
+  var locale = {
+    months: [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ],
+    monthsShort: [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ],
+    weekdays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    weekdaysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+    weekdaysMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+    firstDayOfWeek: 0,
+    firstWeekContainsDate: 1,
+  };
+  var _default = locale;
+  exports['default'] = _default;
+  module.exports = exports.default;
 });
 
 var en$1 = unwrapExports(en);
@@ -447,7 +501,7 @@ var lang = {
   formatLocale: en$1,
   yearFormat: 'YYYY',
   monthFormat: 'MMM',
-  monthBeforeYear: true
+  monthBeforeYear: true,
 };
 
 var defaultLocale = 'en';
@@ -493,7 +547,7 @@ function rafThrottle(fn) {
 
     if (isRunning) return;
     isRunning = true;
-    requestAnimationFrame(function () {
+    requestAnimationFrame(function() {
       isRunning = false;
       fn.apply(_this, args);
     });
@@ -510,13 +564,15 @@ function getPopupElementSize(element) {
   element.style.display = 'block';
   element.style.visibility = 'hidden';
   var styles = window.getComputedStyle(element);
-  var width = element.offsetWidth + parseInt(styles.marginLeft, 10) + parseInt(styles.marginRight, 10);
-  var height = element.offsetHeight + parseInt(styles.marginTop, 10) + parseInt(styles.marginBottom, 10);
+  var width =
+    element.offsetWidth + parseInt(styles.marginLeft, 10) + parseInt(styles.marginRight, 10);
+  var height =
+    element.offsetHeight + parseInt(styles.marginTop, 10) + parseInt(styles.marginBottom, 10);
   element.style.display = originalDisplay;
   element.style.visibility = originalVisibility;
   return {
     width: width,
-    height: height
+    height: height,
   };
 }
 /**
@@ -558,8 +614,8 @@ function getRelativePosition(el, targetWidth, targetHeight, fixed) {
   }
 
   return {
-    left: "".concat(left, "px"),
-    top: "".concat(top, "px")
+    left: ''.concat(left, 'px'),
+    top: ''.concat(top, 'px'),
   };
 }
 function getScrollParent(node) {
@@ -574,7 +630,9 @@ function getScrollParent(node) {
   };
 
   var regex = /(auto|scroll)/;
-  var scroll = regex.test(style(node, 'overflow') + style(node, 'overflow-y') + style(node, 'overflow-x'));
+  var scroll = regex.test(
+    style(node, 'overflow') + style(node, 'overflow-y') + style(node, 'overflow-x')
+  );
   return scroll ? node : getScrollParent(node.parentNode, until);
 }
 
@@ -583,23 +641,23 @@ var script = {
   name: 'Popup',
   inject: {
     prefixClass: {
-      default: 'mx'
-    }
+      default: 'mx',
+    },
   },
   props: {
     visible: {
       type: Boolean,
-      default: false
+      default: false,
     },
     appendToBody: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   data: function data() {
     return {
       top: '',
-      left: ''
+      left: '',
     };
   },
   watch: {
@@ -608,13 +666,13 @@ var script = {
       handler: function handler(val) {
         var _this = this;
 
-        this.$nextTick(function () {
+        this.$nextTick(function() {
           if (val) {
             _this.displayPopup();
           }
         });
-      }
-    }
+      },
+    },
   },
   mounted: function mounted() {
     var _this2 = this;
@@ -627,7 +685,7 @@ var script = {
     document.addEventListener(this._clickoutEvent, this.handleClickOutside); // change the popup position when resize or scroll
 
     var relativeElement = this.$parent.$el;
-    this._displayPopup = rafThrottle(function () {
+    this._displayPopup = rafThrottle(function() {
       return _this2.displayPopup();
     });
     this._scrollParent = getScrollParent(relativeElement) || window;
@@ -668,28 +726,37 @@ var script = {
       }
 
       var _this$_popupRect = this._popupRect,
-          width = _this$_popupRect.width,
-          height = _this$_popupRect.height;
+        width = _this$_popupRect.width,
+        height = _this$_popupRect.height;
 
       var _getRelativePosition = getRelativePosition(relativeElement, width, height, appendToBody),
-          left = _getRelativePosition.left,
-          top = _getRelativePosition.top;
+        left = _getRelativePosition.left,
+        top = _getRelativePosition.top;
 
       this.left = left;
       this.top = top;
-    }
-  }
+    },
+  },
 };
 
-function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier
-/* server only */
-, shadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
+function normalizeComponent(
+  template,
+  style,
+  script,
+  scopeId,
+  isFunctionalTemplate,
+  moduleIdentifier,
+  /* server only */
+  shadowMode,
+  createInjector,
+  createInjectorSSR,
+  createInjectorShadow
+) {
   if (typeof shadowMode !== 'boolean') {
     createInjectorSSR = createInjector;
     createInjector = shadowMode;
     shadowMode = false;
   } // Vue.extend constructor export interop.
-
 
   var options = typeof script === 'function' ? script.options : script; // render functions
 
@@ -703,7 +770,6 @@ function normalizeComponent(template, style, script, scopeId, isFunctionalTempla
     }
   } // scopedId
 
-
   if (scopeId) {
     options._scopeId = scopeId;
   }
@@ -714,20 +780,19 @@ function normalizeComponent(template, style, script, scopeId, isFunctionalTempla
     // server build
     hook = function hook(context) {
       // 2.3 injection
-      context = context || // cached call
-      this.$vnode && this.$vnode.ssrContext || // stateful
-      this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext; // functional
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext); // functional
       // 2.2 with runInNewContext: true
 
       if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
         context = __VUE_SSR_CONTEXT__;
       } // inject component styles
 
-
       if (style) {
         style.call(this, createInjectorSSR(context));
       } // register component module identifier for async chunk inference
-
 
       if (context && context._registeredComponents) {
         context._registeredComponents.add(moduleIdentifier);
@@ -735,14 +800,15 @@ function normalizeComponent(template, style, script, scopeId, isFunctionalTempla
     }; // used by ssr in case component is cached and beforeCreate
     // never gets called
 
-
     options._ssrRegister = hook;
   } else if (style) {
-    hook = shadowMode ? function (context) {
-      style.call(this, createInjectorShadow(context, this.$root.$options.shadowRoot));
-    } : function (context) {
-      style.call(this, createInjector(context));
-    };
+    hook = shadowMode
+      ? function(context) {
+          style.call(this, createInjectorShadow(context, this.$root.$options.shadowRoot));
+        }
+      : function(context) {
+          style.call(this, createInjector(context));
+        };
   }
 
   if (hook) {
@@ -775,18 +841,31 @@ var __vue_render__ = function __vue_render__() {
 
   var _c = _vm._self._c || _h;
 
-  return _c('transition', {
-    attrs: {
-      "name": _vm.prefixClass + "-zoom-in-down"
-    }
-  }, [_vm.visible ? _c('div', {
-    class: _vm.prefixClass + "-datepicker-main " + _vm.prefixClass + "-datepicker-popup",
-    style: {
-      top: _vm.top,
-      left: _vm.left,
-      position: 'absolute'
-    }
-  }, [_vm._t("default")], 2) : _vm._e()]);
+  return _c(
+    'transition',
+    {
+      attrs: {
+        name: _vm.prefixClass + '-zoom-in-down',
+      },
+    },
+    [
+      _vm.visible
+        ? _c(
+            'div',
+            {
+              class: _vm.prefixClass + '-datepicker-main ' + _vm.prefixClass + '-datepicker-popup',
+              style: {
+                top: _vm.top,
+                left: _vm.left,
+                position: 'absolute',
+              },
+            },
+            [_vm._t('default')],
+            2
+          )
+        : _vm._e(),
+    ]
+  );
 };
 
 var __vue_staticRenderFns__ = [];
@@ -808,10 +887,21 @@ var __vue_is_functional_template__ = false;
 
 /* style inject shadow dom */
 
-var __vue_component__ = normalizeComponent({
-  render: __vue_render__,
-  staticRenderFns: __vue_staticRenderFns__
-}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, undefined, undefined);
+var __vue_component__ = normalizeComponent(
+  {
+    render: __vue_render__,
+    staticRenderFns: __vue_staticRenderFns__,
+  },
+  __vue_inject_styles__,
+  __vue_script__,
+  __vue_scope_id__,
+  __vue_is_functional_template__,
+  __vue_module_identifier__,
+  false,
+  undefined,
+  undefined,
+  undefined
+);
 
 /* script */
 
@@ -823,18 +913,25 @@ var __vue_render__$1 = function __vue_render__() {
 
   var _c = _vm._self._c || _h;
 
-  return _c('svg', {
-    attrs: {
-      "xmlns": "http://www.w3.org/2000/svg",
-      "viewBox": "0 0 1024 1024",
-      "width": "1em",
-      "height": "1em"
-    }
-  }, [_c('path', {
-    attrs: {
-      "d": "M940.218182 107.054545h-209.454546V46.545455h-65.163636v60.50909H363.054545V46.545455H297.890909v60.50909H83.781818c-18.618182 0-32.581818 13.963636-32.581818 32.581819v805.236363c0 18.618182 13.963636 32.581818 32.581818 32.581818h861.090909c18.618182 0 32.581818-13.963636 32.581818-32.581818V139.636364c-4.654545-18.618182-18.618182-32.581818-37.236363-32.581819zM297.890909 172.218182V232.727273h65.163636V172.218182h307.2V232.727273h65.163637V172.218182h176.872727v204.8H116.363636V172.218182h181.527273zM116.363636 912.290909V442.181818h795.927273v470.109091H116.363636z"
-    }
-  })]);
+  return _c(
+    'svg',
+    {
+      attrs: {
+        xmlns: 'http://www.w3.org/2000/svg',
+        viewBox: '0 0 1024 1024',
+        width: '1em',
+        height: '1em',
+      },
+    },
+    [
+      _c('path', {
+        attrs: {
+          d:
+            'M940.218182 107.054545h-209.454546V46.545455h-65.163636v60.50909H363.054545V46.545455H297.890909v60.50909H83.781818c-18.618182 0-32.581818 13.963636-32.581818 32.581819v805.236363c0 18.618182 13.963636 32.581818 32.581818 32.581818h861.090909c18.618182 0 32.581818-13.963636 32.581818-32.581818V139.636364c-4.654545-18.618182-18.618182-32.581818-37.236363-32.581819zM297.890909 172.218182V232.727273h65.163636V172.218182h307.2V232.727273h65.163637V172.218182h176.872727v204.8H116.363636V172.218182h181.527273zM116.363636 912.290909V442.181818h795.927273v470.109091H116.363636z',
+        },
+      }),
+    ]
+  );
 };
 
 var __vue_staticRenderFns__$1 = [];
@@ -856,10 +953,21 @@ var __vue_is_functional_template__$1 = false;
 
 /* style inject shadow dom */
 
-var __vue_component__$1 = normalizeComponent({
-  render: __vue_render__$1,
-  staticRenderFns: __vue_staticRenderFns__$1
-}, __vue_inject_styles__$1, {}, __vue_scope_id__$1, __vue_is_functional_template__$1, __vue_module_identifier__$1, false, undefined, undefined, undefined);
+var __vue_component__$1 = normalizeComponent(
+  {
+    render: __vue_render__$1,
+    staticRenderFns: __vue_staticRenderFns__$1,
+  },
+  __vue_inject_styles__$1,
+  {},
+  __vue_scope_id__$1,
+  __vue_is_functional_template__$1,
+  __vue_module_identifier__$1,
+  false,
+  undefined,
+  undefined,
+  undefined
+);
 
 /* script */
 
@@ -871,27 +979,38 @@ var __vue_render__$2 = function __vue_render__() {
 
   var _c = _vm._self._c || _h;
 
-  return _c('svg', {
-    attrs: {
-      "xmlns": "http://www.w3.org/2000/svg",
-      "viewBox": "0 0 24 24",
-      "width": "1em",
-      "height": "1em"
-    }
-  }, [_c('path', {
-    attrs: {
-      "d": "M0 0h24v24H0z",
-      "fill": "none"
-    }
-  }), _vm._v(" "), _c('path', {
-    attrs: {
-      "d": "M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
-    }
-  }), _vm._v(" "), _c('path', {
-    attrs: {
-      "d": "M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"
-    }
-  })]);
+  return _c(
+    'svg',
+    {
+      attrs: {
+        xmlns: 'http://www.w3.org/2000/svg',
+        viewBox: '0 0 24 24',
+        width: '1em',
+        height: '1em',
+      },
+    },
+    [
+      _c('path', {
+        attrs: {
+          d: 'M0 0h24v24H0z',
+          fill: 'none',
+        },
+      }),
+      _vm._v(' '),
+      _c('path', {
+        attrs: {
+          d:
+            'M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z',
+        },
+      }),
+      _vm._v(' '),
+      _c('path', {
+        attrs: {
+          d: 'M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z',
+        },
+      }),
+    ]
+  );
 };
 
 var __vue_staticRenderFns__$2 = [];
@@ -913,10 +1032,21 @@ var __vue_is_functional_template__$2 = false;
 
 /* style inject shadow dom */
 
-var __vue_component__$2 = normalizeComponent({
-  render: __vue_render__$2,
-  staticRenderFns: __vue_staticRenderFns__$2
-}, __vue_inject_styles__$2, {}, __vue_scope_id__$2, __vue_is_functional_template__$2, __vue_module_identifier__$2, false, undefined, undefined, undefined);
+var __vue_component__$2 = normalizeComponent(
+  {
+    render: __vue_render__$2,
+    staticRenderFns: __vue_staticRenderFns__$2,
+  },
+  __vue_inject_styles__$2,
+  {},
+  __vue_scope_id__$2,
+  __vue_is_functional_template__$2,
+  __vue_module_identifier__$2,
+  false,
+  undefined,
+  undefined,
+  undefined
+);
 
 /* script */
 
@@ -928,18 +1058,25 @@ var __vue_render__$3 = function __vue_render__() {
 
   var _c = _vm._self._c || _h;
 
-  return _c('svg', {
-    attrs: {
-      "xmlns": "http://www.w3.org/2000/svg",
-      "viewBox": "0 0 1024 1024",
-      "width": "1em",
-      "height": "1em"
-    }
-  }, [_c('path', {
-    attrs: {
-      "d": "M810.005333 274.005333l-237.994667 237.994667 237.994667 237.994667-60.010667 60.010667-237.994667-237.994667-237.994667 237.994667-60.010667-60.010667 237.994667-237.994667-237.994667-237.994667 60.010667-60.010667 237.994667 237.994667 237.994667-237.994667z"
-    }
-  })]);
+  return _c(
+    'svg',
+    {
+      attrs: {
+        xmlns: 'http://www.w3.org/2000/svg',
+        viewBox: '0 0 1024 1024',
+        width: '1em',
+        height: '1em',
+      },
+    },
+    [
+      _c('path', {
+        attrs: {
+          d:
+            'M810.005333 274.005333l-237.994667 237.994667 237.994667 237.994667-60.010667 60.010667-237.994667-237.994667-237.994667 237.994667-60.010667-60.010667 237.994667-237.994667-237.994667-237.994667 60.010667-60.010667 237.994667 237.994667 237.994667-237.994667z',
+        },
+      }),
+    ]
+  );
 };
 
 var __vue_staticRenderFns__$3 = [];
@@ -961,10 +1098,21 @@ var __vue_is_functional_template__$3 = false;
 
 /* style inject shadow dom */
 
-var __vue_component__$3 = normalizeComponent({
-  render: __vue_render__$3,
-  staticRenderFns: __vue_staticRenderFns__$3
-}, __vue_inject_styles__$3, {}, __vue_scope_id__$3, __vue_is_functional_template__$3, __vue_module_identifier__$3, false, undefined, undefined, undefined);
+var __vue_component__$3 = normalizeComponent(
+  {
+    render: __vue_render__$3,
+    staticRenderFns: __vue_staticRenderFns__$3,
+  },
+  __vue_inject_styles__$3,
+  {},
+  __vue_scope_id__$3,
+  __vue_is_functional_template__$3,
+  __vue_module_identifier__$3,
+  false,
+  undefined,
+  undefined,
+  undefined
+);
 
 //
 //
@@ -978,13 +1126,13 @@ var __vue_component__$3 = normalizeComponent({
 //
 var script$1 = {
   props: {
-    type: String
+    type: String,
   },
   inject: {
     prefixClass: {
-      default: 'mx'
-    }
-  }
+      default: 'mx',
+    },
+  },
 };
 
 /* script */
@@ -998,14 +1146,30 @@ var __vue_render__$4 = function __vue_render__() {
 
   var _c = _vm._self._c || _h;
 
-  return _c('button', _vm._g({
-    class: _vm.prefixClass + "-btn " + _vm.prefixClass + "-btn-text " + _vm.prefixClass + "-btn-icon-" + _vm.type,
-    attrs: {
-      "type": "button"
-    }
-  }, _vm.$listeners), [_c('i', {
-    class: _vm.prefixClass + "-icon-" + _vm.type
-  })]);
+  return _c(
+    'button',
+    _vm._g(
+      {
+        class:
+          _vm.prefixClass +
+          '-btn ' +
+          _vm.prefixClass +
+          '-btn-text ' +
+          _vm.prefixClass +
+          '-btn-icon-' +
+          _vm.type,
+        attrs: {
+          type: 'button',
+        },
+      },
+      _vm.$listeners
+    ),
+    [
+      _c('i', {
+        class: _vm.prefixClass + '-icon-' + _vm.type,
+      }),
+    ]
+  );
 };
 
 var __vue_staticRenderFns__$4 = [];
@@ -1027,64 +1191,75 @@ var __vue_is_functional_template__$4 = false;
 
 /* style inject shadow dom */
 
-var __vue_component__$4 = normalizeComponent({
-  render: __vue_render__$4,
-  staticRenderFns: __vue_staticRenderFns__$4
-}, __vue_inject_styles__$4, __vue_script__$1, __vue_scope_id__$4, __vue_is_functional_template__$4, __vue_module_identifier__$4, false, undefined, undefined, undefined);
+var __vue_component__$4 = normalizeComponent(
+  {
+    render: __vue_render__$4,
+    staticRenderFns: __vue_staticRenderFns__$4,
+  },
+  __vue_inject_styles__$4,
+  __vue_script__$1,
+  __vue_scope_id__$4,
+  __vue_is_functional_template__$4,
+  __vue_module_identifier__$4,
+  false,
+  undefined,
+  undefined,
+  undefined
+);
 
 var script$2 = {
   name: 'TableDate',
   components: {
-    IconButton: __vue_component__$4
+    IconButton: __vue_component__$4,
   },
   inject: {
     getLocale: {
       default: function _default() {
         return getLocale;
-      }
+      },
     },
     getWeek: {
       default: function _default() {
         return getWeek;
-      }
+      },
     },
     prefixClass: {
-      default: 'mx'
+      default: 'mx',
     },
     onDateMouseEnter: {
-      default: undefined
+      default: undefined,
     },
     onDateMouseLeave: {
-      default: undefined
-    }
+      default: undefined,
+    },
   },
   props: {
     calendar: {
       type: Date,
       default: function _default() {
         return new Date();
-      }
+      },
     },
     showWeekNumber: {
       type: Boolean,
-      default: false
+      default: false,
     },
     titleFormat: {
       type: String,
-      default: 'YYYY-MM-DD'
+      default: 'YYYY-MM-DD',
     },
     getRowClasses: {
       type: Function,
       default: function _default() {
         return [];
-      }
+      },
     },
     getCellClasses: {
       type: Function,
       default: function _default() {
         return [];
-      }
-    }
+      },
+    },
   },
   computed: {
     firstDayOfWeek: function firstDayOfWeek() {
@@ -1092,18 +1267,18 @@ var script$2 = {
     },
     yearMonth: function yearMonth() {
       var _this$getLocale = this.getLocale(),
-          yearFormat = _this$getLocale.yearFormat,
-          monthBeforeYear = _this$getLocale.monthBeforeYear,
-          _this$getLocale$month = _this$getLocale.monthFormat,
-          monthFormat = _this$getLocale$month === void 0 ? 'MMM' : _this$getLocale$month;
+        yearFormat = _this$getLocale.yearFormat,
+        monthBeforeYear = _this$getLocale.monthBeforeYear,
+        _this$getLocale$month = _this$getLocale.monthFormat,
+        monthFormat = _this$getLocale$month === void 0 ? 'MMM' : _this$getLocale$month;
 
       var yearLabel = {
         panel: 'year',
-        label: this.formatDate(this.calendar, yearFormat)
+        label: this.formatDate(this.calendar, yearFormat),
       };
       var monthLabel = {
         panel: 'month',
-        label: this.formatDate(this.calendar, monthFormat)
+        label: this.formatDate(this.calendar, monthFormat),
       };
       return monthBeforeYear ? [monthLabel, yearLabel] : [yearLabel, monthLabel];
     },
@@ -1118,31 +1293,47 @@ var script$2 = {
       var arr = getCalendar({
         firstDayOfWeek: this.firstDayOfWeek,
         year: year,
-        month: month
+        month: month,
       });
       return chunk(arr, 7);
-    }
+    },
   },
   methods: {
     handleIconLeftClick: function handleIconLeftClick() {
-      this.$emit('changecalendar', setMonth(this.calendar, function (v) {
-        return v - 1;
-      }), 'last-month');
+      this.$emit(
+        'changecalendar',
+        setMonth(this.calendar, function(v) {
+          return v - 1;
+        }),
+        'last-month'
+      );
     },
     handleIconRightClick: function handleIconRightClick() {
-      this.$emit('changecalendar', setMonth(this.calendar, function (v) {
-        return v + 1;
-      }), 'next-month');
+      this.$emit(
+        'changecalendar',
+        setMonth(this.calendar, function(v) {
+          return v + 1;
+        }),
+        'next-month'
+      );
     },
     handleIconDoubleLeftClick: function handleIconDoubleLeftClick() {
-      this.$emit('changecalendar', setYear(this.calendar, function (v) {
-        return v - 1;
-      }), 'last-year');
+      this.$emit(
+        'changecalendar',
+        setYear(this.calendar, function(v) {
+          return v - 1;
+        }),
+        'last-year'
+      );
     },
     handleIconDoubleRightClick: function handleIconDoubleRightClick() {
-      this.$emit('changecalendar', setYear(this.calendar, function (v) {
-        return v + 1;
-      }), 'next-year');
+      this.$emit(
+        'changecalendar',
+        setYear(this.calendar, function(v) {
+          return v + 1;
+        }),
+        'next-year'
+      );
     },
     handlePanelChange: function handlePanelChange(panel) {
       this.$emit('changepanel', panel);
@@ -1167,12 +1358,12 @@ var script$2 = {
       var index = target.getAttribute('data-row-col');
 
       if (index) {
-        var _index$split$map = index.split(',').map(function (v) {
-          return parseInt(v, 10);
-        }),
-            _index$split$map2 = _slicedToArray(_index$split$map, 2),
-            row = _index$split$map2[0],
-            col = _index$split$map2[1];
+        var _index$split$map = index.split(',').map(function(v) {
+            return parseInt(v, 10);
+          }),
+          _index$split$map2 = _slicedToArray(_index$split$map, 2),
+          row = _index$split$map2[0],
+          col = _index$split$map2[1];
 
         var date = this.dates[row][col];
         this.$emit('select', new Date(date));
@@ -1180,7 +1371,7 @@ var script$2 = {
     },
     formatDate: function formatDate(date, fmt) {
       return format(date, fmt, {
-        locale: this.getLocale().formatLocale
+        locale: this.getLocale().formatLocale,
       });
     },
     getCellTitle: function getCellTitle(date) {
@@ -1189,8 +1380,8 @@ var script$2 = {
     },
     getWeekNumber: function getWeekNumber(date) {
       return this.getWeek(date, this.getLocale().formatLocale);
-    }
-  }
+    },
+  },
 };
 
 /* script */
@@ -1204,96 +1395,195 @@ var __vue_render__$5 = function __vue_render__() {
 
   var _c = _vm._self._c || _h;
 
-  return _c('div', {
-    class: _vm.prefixClass + "-calendar " + _vm.prefixClass + "-calendar-panel-date"
-  }, [_c('div', {
-    class: _vm.prefixClass + "-calendar-header"
-  }, [_c('icon-button', {
-    attrs: {
-      "type": "double-left"
+  return _c(
+    'div',
+    {
+      class: _vm.prefixClass + '-calendar ' + _vm.prefixClass + '-calendar-panel-date',
     },
-    on: {
-      "click": _vm.handleIconDoubleLeftClick
-    }
-  }), _vm._v(" "), _c('icon-button', {
-    attrs: {
-      "type": "left"
-    },
-    on: {
-      "click": _vm.handleIconLeftClick
-    }
-  }), _vm._v(" "), _c('icon-button', {
-    attrs: {
-      "type": "double-right"
-    },
-    on: {
-      "click": _vm.handleIconDoubleRightClick
-    }
-  }), _vm._v(" "), _c('icon-button', {
-    attrs: {
-      "type": "right"
-    },
-    on: {
-      "click": _vm.handleIconRightClick
-    }
-  }), _vm._v(" "), _c('span', {
-    class: _vm.prefixClass + "-calendar-header-label"
-  }, _vm._l(_vm.yearMonth, function (item) {
-    return _c('button', {
-      key: item.panel,
-      class: _vm.prefixClass + "-btn " + _vm.prefixClass + "-btn-text " + _vm.prefixClass + "-btn-current-" + item.panel,
-      attrs: {
-        "type": "button"
-      },
-      on: {
-        "click": function click($event) {
-          return _vm.handlePanelChange(item.panel);
-        }
-      }
-    }, [_vm._v("\n        " + _vm._s(item.label) + "\n      ")]);
-  }), 0)], 1), _vm._v(" "), _c('div', {
-    class: _vm.prefixClass + "-calendar-content"
-  }, [_c('table', {
-    class: _vm.prefixClass + "-table " + _vm.prefixClass + "-table-date"
-  }, [_c('thead', [_c('tr', [_vm.showWeekNumber ? _c('th', {
-    class: _vm.prefixClass + "-week-number-header"
-  }) : _vm._e(), _vm._v(" "), _vm._l(_vm.days, function (day) {
-    return _c('th', {
-      key: day
-    }, [_vm._v(_vm._s(day))]);
-  })], 2)]), _vm._v(" "), _c('tbody', {
-    on: {
-      "click": _vm.handleCellClick
-    }
-  }, _vm._l(_vm.dates, function (row, i) {
-    return _c('tr', {
-      key: i,
-      class: [_vm.prefixClass + "-date-row", _vm.getRowClasses(row)]
-    }, [_vm.showWeekNumber ? _c('td', {
-      class: _vm.prefixClass + "-week-number",
-      attrs: {
-        "data-row-col": i + ",0"
-      }
-    }, [_vm._v("\n            " + _vm._s(_vm.getWeekNumber(row[0])) + "\n          ")]) : _vm._e(), _vm._v(" "), _vm._l(row, function (cell, j) {
-      return _c('td', {
-        key: j,
-        staticClass: "cell",
-        class: _vm.getCellClasses(cell),
-        attrs: {
-          "data-row-col": i + "," + j,
-          "title": _vm.getCellTitle(cell)
+    [
+      _c(
+        'div',
+        {
+          class: _vm.prefixClass + '-calendar-header',
         },
-        on: {
-          "mouseenter": function mouseenter($event) {
-            return _vm.handleMouseEnter(cell);
-          },
-          "mouseleave": function mouseleave($event) {
-            return _vm.handleMouseLeave(cell);
-          }
-        }
-      }, [_c('div', [_vm._v(_vm._s(cell.getDate()))])]);
-    })], 2);
-  }), 0)])])]);
+        [
+          _c('icon-button', {
+            attrs: {
+              type: 'double-left',
+            },
+            on: {
+              click: _vm.handleIconDoubleLeftClick,
+            },
+          }),
+          _vm._v(' '),
+          _c('icon-button', {
+            attrs: {
+              type: 'left',
+            },
+            on: {
+              click: _vm.handleIconLeftClick,
+            },
+          }),
+          _vm._v(' '),
+          _c('icon-button', {
+            attrs: {
+              type: 'double-right',
+            },
+            on: {
+              click: _vm.handleIconDoubleRightClick,
+            },
+          }),
+          _vm._v(' '),
+          _c('icon-button', {
+            attrs: {
+              type: 'right',
+            },
+            on: {
+              click: _vm.handleIconRightClick,
+            },
+          }),
+          _vm._v(' '),
+          _c(
+            'span',
+            {
+              class: _vm.prefixClass + '-calendar-header-label',
+            },
+            _vm._l(_vm.yearMonth, function(item) {
+              return _c(
+                'button',
+                {
+                  key: item.panel,
+                  class:
+                    _vm.prefixClass +
+                    '-btn ' +
+                    _vm.prefixClass +
+                    '-btn-text ' +
+                    _vm.prefixClass +
+                    '-btn-current-' +
+                    item.panel,
+                  attrs: {
+                    type: 'button',
+                  },
+                  on: {
+                    click: function click($event) {
+                      return _vm.handlePanelChange(item.panel);
+                    },
+                  },
+                },
+                [_vm._v('\n        ' + _vm._s(item.label) + '\n      ')]
+              );
+            }),
+            0
+          ),
+        ],
+        1
+      ),
+      _vm._v(' '),
+      _c(
+        'div',
+        {
+          class: _vm.prefixClass + '-calendar-content',
+        },
+        [
+          _c(
+            'table',
+            {
+              class: _vm.prefixClass + '-table ' + _vm.prefixClass + '-table-date',
+            },
+            [
+              _c('thead', [
+                _c(
+                  'tr',
+                  [
+                    _vm.showWeekNumber
+                      ? _c('th', {
+                          class: _vm.prefixClass + '-week-number-header',
+                        })
+                      : _vm._e(),
+                    _vm._v(' '),
+                    _vm._l(_vm.days, function(day) {
+                      return _c(
+                        'th',
+                        {
+                          key: day,
+                        },
+                        [_vm._v(_vm._s(day))]
+                      );
+                    }),
+                  ],
+                  2
+                ),
+              ]),
+              _vm._v(' '),
+              _c(
+                'tbody',
+                {
+                  on: {
+                    click: _vm.handleCellClick,
+                  },
+                },
+                _vm._l(_vm.dates, function(row, i) {
+                  return _c(
+                    'tr',
+                    {
+                      key: i,
+                      class: [_vm.prefixClass + '-date-row', _vm.getRowClasses(row)],
+                    },
+                    [
+                      _vm.showWeekNumber
+                        ? _c(
+                            'td',
+                            {
+                              class: _vm.prefixClass + '-week-number',
+                              attrs: {
+                                'data-row-col': i + ',0',
+                              },
+                            },
+                            [
+                              _vm._v(
+                                '\n            ' +
+                                  _vm._s(_vm.getWeekNumber(row[0])) +
+                                  '\n          '
+                              ),
+                            ]
+                          )
+                        : _vm._e(),
+                      _vm._v(' '),
+                      _vm._l(row, function(cell, j) {
+                        return _c(
+                          'td',
+                          {
+                            key: j,
+                            staticClass: 'cell',
+                            class: _vm.getCellClasses(cell),
+                            attrs: {
+                              'data-row-col': i + ',' + j,
+                              title: _vm.getCellTitle(cell),
+                            },
+                            on: {
+                              mouseenter: function mouseenter($event) {
+                                return _vm.handleMouseEnter(cell);
+                              },
+                              mouseleave: function mouseleave($event) {
+                                return _vm.handleMouseLeave(cell);
+                              },
+                            },
+                          },
+                          [_c('div', [_vm._v(_vm._s(cell.getDate()))])]
+                        );
+                      }),
+                    ],
+                    2
+                  );
+                }),
+                0
+              ),
+            ]
+          ),
+        ]
+      ),
+    ]
+  );
 };
 
 var __vue_staticRenderFns__$5 = [];
@@ -1315,40 +1605,51 @@ var __vue_is_functional_template__$5 = false;
 
 /* style inject shadow dom */
 
-var __vue_component__$5 = normalizeComponent({
-  render: __vue_render__$5,
-  staticRenderFns: __vue_staticRenderFns__$5
-}, __vue_inject_styles__$5, __vue_script__$2, __vue_scope_id__$5, __vue_is_functional_template__$5, __vue_module_identifier__$5, false, undefined, undefined, undefined);
+var __vue_component__$5 = normalizeComponent(
+  {
+    render: __vue_render__$5,
+    staticRenderFns: __vue_staticRenderFns__$5,
+  },
+  __vue_inject_styles__$5,
+  __vue_script__$2,
+  __vue_scope_id__$5,
+  __vue_is_functional_template__$5,
+  __vue_module_identifier__$5,
+  false,
+  undefined,
+  undefined,
+  undefined
+);
 
 //
 var script$3 = {
   name: 'TableMonth',
   components: {
-    IconButton: __vue_component__$4
+    IconButton: __vue_component__$4,
   },
   inject: {
     getLocale: {
       default: function _default() {
         return getLocale;
-      }
+      },
     },
     prefixClass: {
-      default: 'mx'
-    }
+      default: 'mx',
+    },
   },
   props: {
     calendar: {
       type: Date,
       default: function _default() {
         return new Date();
-      }
+      },
     },
     getCellClasses: {
       type: Function,
       default: function _default() {
         return [];
-      }
-    }
+      },
+    },
   },
   computed: {
     calendarYear: function calendarYear() {
@@ -1357,25 +1658,33 @@ var script$3 = {
     months: function months() {
       var locale = this.getLocale();
       var monthsLocale = locale.months || locale.formatLocale.monthsShort;
-      var months = monthsLocale.map(function (text, month) {
+      var months = monthsLocale.map(function(text, month) {
         return {
           text: text,
-          month: month
+          month: month,
         };
       });
       return chunk(months, 3);
-    }
+    },
   },
   methods: {
     handleIconDoubleLeftClick: function handleIconDoubleLeftClick() {
-      this.$emit('changecalendar', setYear(this.calendar, function (v) {
-        return v - 1;
-      }), 'last-year');
+      this.$emit(
+        'changecalendar',
+        setYear(this.calendar, function(v) {
+          return v - 1;
+        }),
+        'last-year'
+      );
     },
     handleIconDoubleRightClick: function handleIconDoubleRightClick() {
-      this.$emit('changecalendar', setYear(this.calendar, function (v) {
-        return v + 1;
-      }), 'next-year');
+      this.$emit(
+        'changecalendar',
+        setYear(this.calendar, function(v) {
+          return v + 1;
+        }),
+        'next-year'
+      );
     },
     handlePanelChange: function handlePanelChange() {
       this.$emit('changepanel', 'year');
@@ -1392,8 +1701,8 @@ var script$3 = {
       if (month) {
         this.$emit('select', parseInt(month, 10));
       }
-    }
-  }
+    },
+  },
 };
 
 /* script */
@@ -1407,55 +1716,104 @@ var __vue_render__$6 = function __vue_render__() {
 
   var _c = _vm._self._c || _h;
 
-  return _c('div', {
-    class: _vm.prefixClass + "-calendar " + _vm.prefixClass + "-calendar-panel-month"
-  }, [_c('div', {
-    class: _vm.prefixClass + "-calendar-header"
-  }, [_c('icon-button', {
-    attrs: {
-      "type": "double-left"
+  return _c(
+    'div',
+    {
+      class: _vm.prefixClass + '-calendar ' + _vm.prefixClass + '-calendar-panel-month',
     },
-    on: {
-      "click": _vm.handleIconDoubleLeftClick
-    }
-  }), _vm._v(" "), _c('icon-button', {
-    attrs: {
-      "type": "double-right"
-    },
-    on: {
-      "click": _vm.handleIconDoubleRightClick
-    }
-  }), _vm._v(" "), _c('span', {
-    class: _vm.prefixClass + "-calendar-header-label"
-  }, [_c('button', {
-    class: _vm.prefixClass + "-btn " + _vm.prefixClass + "-btn-text",
-    attrs: {
-      "type": "button"
-    },
-    on: {
-      "click": _vm.handlePanelChange
-    }
-  }, [_vm._v("\n        " + _vm._s(_vm.calendarYear) + "\n      ")])])], 1), _vm._v(" "), _c('div', {
-    class: _vm.prefixClass + "-calendar-content"
-  }, [_c('table', {
-    class: _vm.prefixClass + "-table " + _vm.prefixClass + "-table-month",
-    on: {
-      "click": _vm.handleClick
-    }
-  }, _vm._l(_vm.months, function (row, i) {
-    return _c('tr', {
-      key: i
-    }, _vm._l(row, function (cell, j) {
-      return _c('td', {
-        key: j,
-        staticClass: "cell",
-        class: _vm.getCellClasses(cell.month),
-        attrs: {
-          "data-month": cell.month
-        }
-      }, [_c('div', [_vm._v(_vm._s(cell.text))])]);
-    }), 0);
-  }), 0)])]);
+    [
+      _c(
+        'div',
+        {
+          class: _vm.prefixClass + '-calendar-header',
+        },
+        [
+          _c('icon-button', {
+            attrs: {
+              type: 'double-left',
+            },
+            on: {
+              click: _vm.handleIconDoubleLeftClick,
+            },
+          }),
+          _vm._v(' '),
+          _c('icon-button', {
+            attrs: {
+              type: 'double-right',
+            },
+            on: {
+              click: _vm.handleIconDoubleRightClick,
+            },
+          }),
+          _vm._v(' '),
+          _c(
+            'span',
+            {
+              class: _vm.prefixClass + '-calendar-header-label',
+            },
+            [
+              _c(
+                'button',
+                {
+                  class: _vm.prefixClass + '-btn ' + _vm.prefixClass + '-btn-text',
+                  attrs: {
+                    type: 'button',
+                  },
+                  on: {
+                    click: _vm.handlePanelChange,
+                  },
+                },
+                [_vm._v('\n        ' + _vm._s(_vm.calendarYear) + '\n      ')]
+              ),
+            ]
+          ),
+        ],
+        1
+      ),
+      _vm._v(' '),
+      _c(
+        'div',
+        {
+          class: _vm.prefixClass + '-calendar-content',
+        },
+        [
+          _c(
+            'table',
+            {
+              class: _vm.prefixClass + '-table ' + _vm.prefixClass + '-table-month',
+              on: {
+                click: _vm.handleClick,
+              },
+            },
+            _vm._l(_vm.months, function(row, i) {
+              return _c(
+                'tr',
+                {
+                  key: i,
+                },
+                _vm._l(row, function(cell, j) {
+                  return _c(
+                    'td',
+                    {
+                      key: j,
+                      staticClass: 'cell',
+                      class: _vm.getCellClasses(cell.month),
+                      attrs: {
+                        'data-month': cell.month,
+                      },
+                    },
+                    [_c('div', [_vm._v(_vm._s(cell.text))])]
+                  );
+                }),
+                0
+              );
+            }),
+            0
+          ),
+        ]
+      ),
+    ]
+  );
 };
 
 var __vue_staticRenderFns__$6 = [];
@@ -1477,38 +1835,49 @@ var __vue_is_functional_template__$6 = false;
 
 /* style inject shadow dom */
 
-var __vue_component__$6 = normalizeComponent({
-  render: __vue_render__$6,
-  staticRenderFns: __vue_staticRenderFns__$6
-}, __vue_inject_styles__$6, __vue_script__$3, __vue_scope_id__$6, __vue_is_functional_template__$6, __vue_module_identifier__$6, false, undefined, undefined, undefined);
+var __vue_component__$6 = normalizeComponent(
+  {
+    render: __vue_render__$6,
+    staticRenderFns: __vue_staticRenderFns__$6,
+  },
+  __vue_inject_styles__$6,
+  __vue_script__$3,
+  __vue_scope_id__$6,
+  __vue_is_functional_template__$6,
+  __vue_module_identifier__$6,
+  false,
+  undefined,
+  undefined,
+  undefined
+);
 
 //
 var script$4 = {
   name: 'TableYear',
   components: {
-    IconButton: __vue_component__$4
+    IconButton: __vue_component__$4,
   },
   inject: {
     prefixClass: {
-      default: 'mx'
-    }
+      default: 'mx',
+    },
   },
   props: {
     calendar: {
       type: Date,
       default: function _default() {
         return new Date();
-      }
+      },
     },
     getCellClasses: {
       type: Function,
       default: function _default() {
         return [];
-      }
+      },
     },
     getYearPanel: {
-      type: Function
-    }
+      type: Function,
+    },
   },
   computed: {
     years: function years() {
@@ -1529,7 +1898,7 @@ var script$4 = {
       };
 
       return last(last(this.years));
-    }
+    },
   },
   methods: {
     getYears: function getYears(calendar) {
@@ -1543,14 +1912,22 @@ var script$4 = {
       return chunk(years, 2);
     },
     handleIconDoubleLeftClick: function handleIconDoubleLeftClick() {
-      this.$emit('changecalendar', setYear(this.calendar, function (v) {
-        return v - 10;
-      }), 'last-decade');
+      this.$emit(
+        'changecalendar',
+        setYear(this.calendar, function(v) {
+          return v - 10;
+        }),
+        'last-decade'
+      );
     },
     handleIconDoubleRightClick: function handleIconDoubleRightClick() {
-      this.$emit('changecalendar', setYear(this.calendar, function (v) {
-        return v + 10;
-      }), 'next-decade');
+      this.$emit(
+        'changecalendar',
+        setYear(this.calendar, function(v) {
+          return v + 10;
+        }),
+        'next-decade'
+      );
     },
     handleClick: function handleClick(evt) {
       var target = evt.target;
@@ -1564,8 +1941,8 @@ var script$4 = {
       if (year) {
         this.$emit('select', parseInt(year, 10));
       }
-    }
-  }
+    },
+  },
 };
 
 /* script */
@@ -1579,49 +1956,98 @@ var __vue_render__$7 = function __vue_render__() {
 
   var _c = _vm._self._c || _h;
 
-  return _c('div', {
-    class: _vm.prefixClass + "-calendar " + _vm.prefixClass + "-calendar-panel-year"
-  }, [_c('div', {
-    class: _vm.prefixClass + "-calendar-header"
-  }, [_c('icon-button', {
-    attrs: {
-      "type": "double-left"
+  return _c(
+    'div',
+    {
+      class: _vm.prefixClass + '-calendar ' + _vm.prefixClass + '-calendar-panel-year',
     },
-    on: {
-      "click": _vm.handleIconDoubleLeftClick
-    }
-  }), _vm._v(" "), _c('icon-button', {
-    attrs: {
-      "type": "double-right"
-    },
-    on: {
-      "click": _vm.handleIconDoubleRightClick
-    }
-  }), _vm._v(" "), _c('span', {
-    class: _vm.prefixClass + "-calendar-header-label"
-  }, [_c('span', [_vm._v(_vm._s(_vm.firstYear))]), _vm._v(" "), _c('span', {
-    class: _vm.prefixClass + "-calendar-decade-separator"
-  }), _vm._v(" "), _c('span', [_vm._v(_vm._s(_vm.lastYear))])])], 1), _vm._v(" "), _c('div', {
-    class: _vm.prefixClass + "-calendar-content"
-  }, [_c('table', {
-    class: _vm.prefixClass + "-table " + _vm.prefixClass + "-table-year",
-    on: {
-      "click": _vm.handleClick
-    }
-  }, _vm._l(_vm.years, function (row, i) {
-    return _c('tr', {
-      key: i
-    }, _vm._l(row, function (cell, j) {
-      return _c('td', {
-        key: j,
-        staticClass: "cell",
-        class: _vm.getCellClasses(cell),
-        attrs: {
-          "data-year": cell
-        }
-      }, [_c('div', [_vm._v(_vm._s(cell))])]);
-    }), 0);
-  }), 0)])]);
+    [
+      _c(
+        'div',
+        {
+          class: _vm.prefixClass + '-calendar-header',
+        },
+        [
+          _c('icon-button', {
+            attrs: {
+              type: 'double-left',
+            },
+            on: {
+              click: _vm.handleIconDoubleLeftClick,
+            },
+          }),
+          _vm._v(' '),
+          _c('icon-button', {
+            attrs: {
+              type: 'double-right',
+            },
+            on: {
+              click: _vm.handleIconDoubleRightClick,
+            },
+          }),
+          _vm._v(' '),
+          _c(
+            'span',
+            {
+              class: _vm.prefixClass + '-calendar-header-label',
+            },
+            [
+              _c('span', [_vm._v(_vm._s(_vm.firstYear))]),
+              _vm._v(' '),
+              _c('span', {
+                class: _vm.prefixClass + '-calendar-decade-separator',
+              }),
+              _vm._v(' '),
+              _c('span', [_vm._v(_vm._s(_vm.lastYear))]),
+            ]
+          ),
+        ],
+        1
+      ),
+      _vm._v(' '),
+      _c(
+        'div',
+        {
+          class: _vm.prefixClass + '-calendar-content',
+        },
+        [
+          _c(
+            'table',
+            {
+              class: _vm.prefixClass + '-table ' + _vm.prefixClass + '-table-year',
+              on: {
+                click: _vm.handleClick,
+              },
+            },
+            _vm._l(_vm.years, function(row, i) {
+              return _c(
+                'tr',
+                {
+                  key: i,
+                },
+                _vm._l(row, function(cell, j) {
+                  return _c(
+                    'td',
+                    {
+                      key: j,
+                      staticClass: 'cell',
+                      class: _vm.getCellClasses(cell),
+                      attrs: {
+                        'data-year': cell,
+                      },
+                    },
+                    [_c('div', [_vm._v(_vm._s(cell))])]
+                  );
+                }),
+                0
+              );
+            }),
+            0
+          ),
+        ]
+      ),
+    ]
+  );
 };
 
 var __vue_staticRenderFns__$7 = [];
@@ -1643,22 +2069,33 @@ var __vue_is_functional_template__$7 = false;
 
 /* style inject shadow dom */
 
-var __vue_component__$7 = normalizeComponent({
-  render: __vue_render__$7,
-  staticRenderFns: __vue_staticRenderFns__$7
-}, __vue_inject_styles__$7, __vue_script__$4, __vue_scope_id__$7, __vue_is_functional_template__$7, __vue_module_identifier__$7, false, undefined, undefined, undefined);
+var __vue_component__$7 = normalizeComponent(
+  {
+    render: __vue_render__$7,
+    staticRenderFns: __vue_staticRenderFns__$7,
+  },
+  __vue_inject_styles__$7,
+  __vue_script__$4,
+  __vue_scope_id__$7,
+  __vue_is_functional_template__$7,
+  __vue_module_identifier__$7,
+  false,
+  undefined,
+  undefined,
+  undefined
+);
 
 var CalendarPanel = {
   name: 'CalendarPanel',
   inject: {
     prefixClass: {
-      default: 'mx'
+      default: 'mx',
     },
     dispatchDatePicker: {
       default: function _default() {
-        return function () {};
-      }
-    }
+        return function() {};
+      },
+    },
   },
   props: {
     value: {},
@@ -1667,44 +2104,44 @@ var CalendarPanel = {
         var date = new Date();
         date.setHours(0, 0, 0, 0);
         return date;
-      }
+      },
     },
     defaultPanel: {
-      type: String
+      type: String,
     },
     disabledDate: {
       type: Function,
       default: function _default() {
         return false;
-      }
+      },
     },
     type: {
       type: String,
-      default: 'date'
+      default: 'date',
     },
     getClasses: {
       type: Function,
       default: function _default() {
         return [];
-      }
+      },
     },
     showWeekNumber: {
       type: Boolean,
-      default: undefined
+      default: undefined,
     },
     getYearPanel: {
-      type: Function
+      type: Function,
     },
     titleFormat: {
       type: String,
-      default: 'YYYY-MM-DD'
+      default: 'YYYY-MM-DD',
     },
     calendar: Date,
     // update date when select year or month
     partialUpdate: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data: function data() {
     var panels = ['date', 'month', 'year'];
@@ -1712,7 +2149,7 @@ var CalendarPanel = {
     var panel = index !== -1 ? panels[index] : 'date';
     return {
       panel: panel,
-      innerCalendar: new Date()
+      innerCalendar: new Date(),
     };
   },
   computed: {
@@ -1721,10 +2158,10 @@ var CalendarPanel = {
       var map = {
         year: startOfYear,
         month: startOfMonth,
-        date: startOfDay
+        date: startOfDay,
       };
       var start = map[this.type] || map.date;
-      return value.filter(isValidDate).map(function (v) {
+      return value.filter(isValidDate).map(function(v) {
         return start(v);
       });
     },
@@ -1733,19 +2170,19 @@ var CalendarPanel = {
     },
     calendarMonth: function calendarMonth() {
       return this.innerCalendar.getMonth();
-    }
+    },
   },
   watch: {
     value: {
       immediate: true,
-      handler: 'initCalendar'
+      handler: 'initCalendar',
     },
     calendar: {
-      handler: 'initCalendar'
+      handler: 'initCalendar',
     },
     defaultValue: {
-      handler: 'initCalendar'
-    }
+      handler: 'initCalendar',
+    },
   },
   methods: {
     initCalendar: function initCalendar() {
@@ -1867,9 +2304,11 @@ var CalendarPanel = {
         return 'disabled';
       }
 
-      if (this.innerValue.some(function (v) {
-        return v.getTime() === cellDate.getTime();
-      })) {
+      if (
+        this.innerValue.some(function(v) {
+          return v.getTime() === cellDate.getTime();
+        })
+      ) {
         return 'active';
       }
 
@@ -1879,86 +2318,91 @@ var CalendarPanel = {
       if (this.type !== 'week') return '';
       var start = row[0].getTime();
       var end = row[6].getTime();
-      var active = this.innerValue.some(function (v) {
+      var active = this.innerValue.some(function(v) {
         var time = v.getTime();
         return time >= start && time <= end;
       });
-      return active ? "".concat(this.prefixClass, "-active-week") : '';
-    }
+      return active ? ''.concat(this.prefixClass, '-active-week') : '';
+    },
   },
   render: function render() {
     var h = arguments[0];
     var panel = this.panel,
-        innerCalendar = this.innerCalendar;
+      innerCalendar = this.innerCalendar;
 
     if (panel === 'year') {
       return h(__vue_component__$7, {
-        "attrs": {
-          "calendar": innerCalendar,
-          "getCellClasses": this.getYearClasses,
-          "getYearPanel": this.getYearPanel
+        attrs: {
+          calendar: innerCalendar,
+          getCellClasses: this.getYearClasses,
+          getYearPanel: this.getYearPanel,
         },
-        "on": {
-          "select": this.handleSelectYear,
-          "changecalendar": this.handleCalendarChange
-        }
+        on: {
+          select: this.handleSelectYear,
+          changecalendar: this.handleCalendarChange,
+        },
       });
     }
 
     if (panel === 'month') {
       return h(__vue_component__$6, {
-        "attrs": {
-          "calendar": innerCalendar,
-          "getCellClasses": this.getMonthClasses
+        attrs: {
+          calendar: innerCalendar,
+          getCellClasses: this.getMonthClasses,
         },
-        "on": {
-          "select": this.handleSelectMonth,
-          "changepanel": this.handelPanelChange,
-          "changecalendar": this.handleCalendarChange
-        }
+        on: {
+          select: this.handleSelectMonth,
+          changepanel: this.handelPanelChange,
+          changecalendar: this.handleCalendarChange,
+        },
       });
     }
 
     return h(__vue_component__$5, {
-      "class": _defineProperty({}, "".concat(this.prefixClass, "-calendar-week-mode"), this.type === 'week'),
-      "attrs": {
-        "calendar": innerCalendar,
-        "getCellClasses": this.getDateClasses,
-        "getRowClasses": this.getWeekState,
-        "titleFormat": this.titleFormat,
-        "showWeekNumber": typeof this.showWeekNumber === 'boolean' ? this.showWeekNumber : this.type === 'week'
+      class: _defineProperty(
+        {},
+        ''.concat(this.prefixClass, '-calendar-week-mode'),
+        this.type === 'week'
+      ),
+      attrs: {
+        calendar: innerCalendar,
+        getCellClasses: this.getDateClasses,
+        getRowClasses: this.getWeekState,
+        titleFormat: this.titleFormat,
+        showWeekNumber:
+          typeof this.showWeekNumber === 'boolean' ? this.showWeekNumber : this.type === 'week',
       },
-      "on": {
-        "select": this.handleSelectDate,
-        "changepanel": this.handelPanelChange,
-        "changecalendar": this.handleCalendarChange
-      }
+      on: {
+        select: this.handleSelectDate,
+        changepanel: this.handelPanelChange,
+        changecalendar: this.handleCalendarChange,
+      },
     });
-  }
+  },
 };
 
 var CalendarRange = {
   name: 'CalendarRange',
   components: {
-    CalendarPanel: CalendarPanel
+    CalendarPanel: CalendarPanel,
   },
   provide: function provide() {
     return {
       onDateMouseEnter: this.onDateMouseEnter,
-      onDateMouseLeave: this.onDateMouseLeave
+      onDateMouseLeave: this.onDateMouseLeave,
     };
   },
   inject: {
     prefixClass: {
-      default: 'mx'
-    }
+      default: 'mx',
+    },
   },
   props: _objectSpread2({}, CalendarPanel.props),
   data: function data() {
     return {
       innerValue: [],
       calendars: [],
-      hoveredValue: null
+      hoveredValue: null,
     };
   },
   computed: {
@@ -1969,8 +2413,7 @@ var CalendarRange = {
         // type:date  min 1 month
         month: 1 * 12,
         // type:month min 1 year
-        year: 10 * 12 // type:year  min 10 year
-
+        year: 10 * 12, // type:year  min 10 year
       };
       return map[this.type] || map.date;
     },
@@ -1978,8 +2421,10 @@ var CalendarRange = {
       return Infinity;
     },
     defaultValues: function defaultValues() {
-      return Array.isArray(this.defaultValue) ? this.defaultValue : [this.defaultValue, this.defaultValue];
-    }
+      return Array.isArray(this.defaultValue)
+        ? this.defaultValue
+        : [this.defaultValue, this.defaultValue];
+    },
   },
   watch: {
     value: {
@@ -1987,19 +2432,21 @@ var CalendarRange = {
       handler: function handler() {
         var _this = this;
 
-        this.innerValue = isValidRangeDate(this.value) ? this.value : [new Date(NaN), new Date(NaN)];
-        var calendars = this.innerValue.map(function (v, i) {
+        this.innerValue = isValidRangeDate(this.value)
+          ? this.value
+          : [new Date(NaN), new Date(NaN)];
+        var calendars = this.innerValue.map(function(v, i) {
           return startOfMonth(getValidDate(v, _this.defaultValues[i]));
         });
         this.updateCalendars(calendars);
-      }
-    }
+      },
+    },
   },
   methods: {
     handleSelect: function handleSelect(date, type) {
       var _this$innerValue = _slicedToArray(this.innerValue, 2),
-          startValue = _this$innerValue[0],
-          endValue = _this$innerValue[1];
+        startValue = _this$innerValue[0],
+        endValue = _this$innerValue[1];
 
       if (isValidDate(startValue) && !isValidDate(endValue)) {
         if (startValue.getTime() > date.getTime()) {
@@ -2042,8 +2489,8 @@ var CalendarRange = {
     },
     getCalendarGap: function getCalendarGap(calendars) {
       var _calendars = _slicedToArray(calendars, 2),
-          calendarLeft = _calendars[0],
-          calendarRight = _calendars[1];
+        calendarLeft = _calendars[0],
+        calendarRight = _calendars[1];
 
       var yearDiff = calendarRight.getFullYear() - calendarLeft.getFullYear();
       var monthDiff = calendarRight.getMonth() - calendarLeft.getMonth();
@@ -2066,15 +2513,18 @@ var CalendarRange = {
       if (/disabled|active/.test(classnames)) return classes;
 
       var inRange = function inRange(data, range) {
-        var fn = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function (v) {
-          return v.getTime();
-        };
+        var fn =
+          arguments.length > 2 && arguments[2] !== undefined
+            ? arguments[2]
+            : function(v) {
+                return v.getTime();
+              };
         var value = fn(data);
 
         var _range$map = range.map(fn),
-            _range$map2 = _slicedToArray(_range$map, 2),
-            min = _range$map2[0],
-            max = _range$map2[1];
+          _range$map2 = _slicedToArray(_range$map, 2),
+          min = _range$map2[0],
+          max = _range$map2[1];
 
         if (min > max) {
           var _ref = [max, min];
@@ -2089,45 +2539,53 @@ var CalendarRange = {
         return classes.concat('in-range');
       }
 
-      if (currentDates.length === 1 && this.hoveredValue && inRange(cellDate, [currentDates[0], this.hoveredValue])) {
+      if (
+        currentDates.length === 1 &&
+        this.hoveredValue &&
+        inRange(cellDate, [currentDates[0], this.hoveredValue])
+      ) {
         return classes.concat('hover-in-range');
       }
 
       return classes;
-    }
+    },
   },
   render: function render() {
     var _this2 = this;
 
     var h = arguments[0];
-    var calendarRange = this.calendars.map(function (calendar, index) {
+    var calendarRange = this.calendars.map(function(calendar, index) {
       var props = _objectSpread2({}, _this2.$props, {
         calendar: calendar,
         value: _this2.innerValue,
         defaultValue: _this2.defaultValues[index],
         getClasses: _this2.getRangeClasses,
         // don't update when range is true
-        partialUpdate: false
+        partialUpdate: false,
       });
 
       var on = {
         select: _this2.handleSelect,
-        'update:calendar': index === 0 ? _this2.updateStartCalendar : _this2.updateEndCalendar
+        'update:calendar': index === 0 ? _this2.updateStartCalendar : _this2.updateEndCalendar,
       };
-      return h("calendar-panel", {
-        "props": _objectSpread2({}, props),
-        "on": _objectSpread2({}, on)
+      return h('calendar-panel', {
+        props: _objectSpread2({}, props),
+        on: _objectSpread2({}, on),
       });
     });
     var prefixClass = this.prefixClass;
-    return h("div", {
-      "class": "".concat(prefixClass, "-range-wrapper")
-    }, [calendarRange]);
-  }
+    return h(
+      'div',
+      {
+        class: ''.concat(prefixClass, '-range-wrapper'),
+      },
+      [calendarRange]
+    );
+  },
 };
 
 var scrollBarWidth;
-function getScrollbarWidth () {
+function getScrollbarWidth() {
   if (typeof window === 'undefined') return 0;
   if (scrollBarWidth !== undefined) return scrollBarWidth;
   var outer = document.createElement('div');
@@ -2149,14 +2607,14 @@ function getScrollbarWidth () {
 var script$5 = {
   inject: {
     prefixClass: {
-      default: 'mx'
-    }
+      default: 'mx',
+    },
   },
   data: function data() {
     return {
       scrollbarWidth: 0,
       thumbTop: '',
-      thumbHeight: ''
+      thumbHeight: '',
     };
   },
   created: function created() {
@@ -2173,14 +2631,14 @@ var script$5 = {
     getThumbSize: function getThumbSize() {
       var wrap = this.$refs.wrap;
       if (!wrap) return;
-      var heightPercentage = wrap.clientHeight * 100 / wrap.scrollHeight;
-      this.thumbHeight = heightPercentage < 100 ? "".concat(heightPercentage, "%") : '';
+      var heightPercentage = (wrap.clientHeight * 100) / wrap.scrollHeight;
+      this.thumbHeight = heightPercentage < 100 ? ''.concat(heightPercentage, '%') : '';
     },
     handleScroll: function handleScroll(evt) {
       var el = evt.currentTarget;
       var scrollHeight = el.scrollHeight,
-          scrollTop = el.scrollTop;
-      this.thumbTop = "".concat(scrollTop * 100 / scrollHeight, "%");
+        scrollTop = el.scrollTop;
+      this.thumbTop = ''.concat((scrollTop * 100) / scrollHeight, '%');
     },
     handleDragstart: function handleDragstart(evt) {
       evt.stopImmediatePropagation();
@@ -2194,9 +2652,9 @@ var script$5 = {
       var clientY = evt.clientY;
       var wrap = this.$refs.wrap;
       var scrollHeight = wrap.scrollHeight,
-          clientHeight = wrap.clientHeight;
+        clientHeight = wrap.clientHeight;
       var offsetY = clientY - this._prevY;
-      var top = offsetY * scrollHeight / clientHeight;
+      var top = (offsetY * scrollHeight) / clientHeight;
       wrap.scrollTop = top;
     },
     handleDragend: function handleDragend() {
@@ -2204,8 +2662,8 @@ var script$5 = {
         this._draggable = false;
         document.removeEventListener('mousemove', this.handleDraging);
       }
-    }
-  }
+    },
+  },
 };
 
 /* script */
@@ -2219,34 +2677,53 @@ var __vue_render__$8 = function __vue_render__() {
 
   var _c = _vm._self._c || _h;
 
-  return _c('div', {
-    class: _vm.prefixClass + "-scrollbar",
-    style: {
-      position: 'relative',
-      overflow: 'hidden'
-    }
-  }, [_c('div', {
-    ref: "wrap",
-    class: _vm.prefixClass + "-scrollbar-wrap",
-    style: {
-      marginRight: "-" + _vm.scrollbarWidth + "px"
+  return _c(
+    'div',
+    {
+      class: _vm.prefixClass + '-scrollbar',
+      style: {
+        position: 'relative',
+        overflow: 'hidden',
+      },
     },
-    on: {
-      "scroll": _vm.handleScroll
-    }
-  }, [_vm._t("default")], 2), _vm._v(" "), _c('div', {
-    class: _vm.prefixClass + "-scrollbar-track"
-  }, [_c('div', {
-    ref: "thumb",
-    class: _vm.prefixClass + "-scrollbar-thumb",
-    style: {
-      height: _vm.thumbHeight,
-      top: _vm.thumbTop
-    },
-    on: {
-      "mousedown": _vm.handleDragstart
-    }
-  })])]);
+    [
+      _c(
+        'div',
+        {
+          ref: 'wrap',
+          class: _vm.prefixClass + '-scrollbar-wrap',
+          style: {
+            marginRight: '-' + _vm.scrollbarWidth + 'px',
+          },
+          on: {
+            scroll: _vm.handleScroll,
+          },
+        },
+        [_vm._t('default')],
+        2
+      ),
+      _vm._v(' '),
+      _c(
+        'div',
+        {
+          class: _vm.prefixClass + '-scrollbar-track',
+        },
+        [
+          _c('div', {
+            ref: 'thumb',
+            class: _vm.prefixClass + '-scrollbar-thumb',
+            style: {
+              height: _vm.thumbHeight,
+              top: _vm.thumbTop,
+            },
+            on: {
+              mousedown: _vm.handleDragstart,
+            },
+          }),
+        ]
+      ),
+    ]
+  );
 };
 
 var __vue_staticRenderFns__$8 = [];
@@ -2268,21 +2745,32 @@ var __vue_is_functional_template__$8 = false;
 
 /* style inject shadow dom */
 
-var __vue_component__$8 = normalizeComponent({
-  render: __vue_render__$8,
-  staticRenderFns: __vue_staticRenderFns__$8
-}, __vue_inject_styles__$8, __vue_script__$5, __vue_scope_id__$8, __vue_is_functional_template__$8, __vue_module_identifier__$8, false, undefined, undefined, undefined);
+var __vue_component__$8 = normalizeComponent(
+  {
+    render: __vue_render__$8,
+    staticRenderFns: __vue_staticRenderFns__$8,
+  },
+  __vue_inject_styles__$8,
+  __vue_script__$5,
+  __vue_scope_id__$8,
+  __vue_is_functional_template__$8,
+  __vue_module_identifier__$8,
+  false,
+  undefined,
+  undefined,
+  undefined
+);
 
 //
 
 var padNumber = function padNumber(value) {
   value = parseInt(value, 10);
-  return value < 10 ? "0".concat(value) : "".concat(value);
+  return value < 10 ? '0'.concat(value) : ''.concat(value);
 };
 
 var generateOptions = function generateOptions(length, step, options) {
   if (Array.isArray(options)) {
-    return options.filter(function (v) {
+    return options.filter(function(v) {
       return v >= 0 && v < length;
     });
   }
@@ -2305,15 +2793,15 @@ var scrollTo = function scrollTo(element, to) {
 
   // jump to target if duration zero
   if (duration <= 0) {
-    requestAnimationFrame(function () {
+    requestAnimationFrame(function() {
       element.scrollTop = to;
     });
     return;
   }
 
   var difference = to - element.scrollTop;
-  var tick = difference / duration * 10;
-  requestAnimationFrame(function () {
+  var tick = (difference / duration) * 10;
+  requestAnimationFrame(function() {
     var scrollTop = element.scrollTop + tick;
 
     if (scrollTop >= to) {
@@ -2329,91 +2817,95 @@ var scrollTo = function scrollTo(element, to) {
 var script$6 = {
   name: 'ListColumns',
   components: {
-    ScrollbarVertical: __vue_component__$8
+    ScrollbarVertical: __vue_component__$8,
   },
   inject: {
     prefixClass: {
-      default: 'mx'
-    }
+      default: 'mx',
+    },
   },
   props: {
     date: Date,
     scrollDuration: {
       type: Number,
-      default: 100
+      default: 100,
     },
     getClasses: {
       type: Function,
       default: function _default() {
         return [];
-      }
+      },
     },
     hourOptions: Array,
     minuteOptions: Array,
     secondOptions: Array,
     showHour: {
       type: Boolean,
-      default: true
+      default: true,
     },
     showMinute: {
       type: Boolean,
-      default: true
+      default: true,
     },
     showSecond: {
       type: Boolean,
-      default: true
+      default: true,
     },
     hourStep: {
       type: Number,
-      default: 1
+      default: 1,
     },
     minuteStep: {
       type: Number,
-      default: 1
+      default: 1,
     },
     secondStep: {
       type: Number,
-      default: 1
+      default: 1,
     },
     use12h: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     columns: function columns() {
       var cols = [];
-      if (this.showHour) cols.push({
-        type: 'hour',
-        list: this.getHoursList()
-      });
-      if (this.showMinute) cols.push({
-        type: 'minute',
-        list: this.getMinutesList()
-      });
-      if (this.showSecond) cols.push({
-        type: 'second',
-        list: this.getSecondsList()
-      });
-      if (this.use12h) cols.push({
-        type: 'ampm',
-        list: this.getAMPMList()
-      });
-      return cols.filter(function (v) {
+      if (this.showHour)
+        cols.push({
+          type: 'hour',
+          list: this.getHoursList(),
+        });
+      if (this.showMinute)
+        cols.push({
+          type: 'minute',
+          list: this.getMinutesList(),
+        });
+      if (this.showSecond)
+        cols.push({
+          type: 'second',
+          list: this.getSecondsList(),
+        });
+      if (this.use12h)
+        cols.push({
+          type: 'ampm',
+          list: this.getAMPMList(),
+        });
+      return cols.filter(function(v) {
         return v.list.length > 0;
       });
-    }
+    },
   },
   watch: {
     date: {
       handler: function handler() {
         var _this = this;
 
-        this.$nextTick(function () {
+        this.$nextTick(function() {
           _this.scrollToSelected(_this.scrollDuration);
         });
-      }
-    }
+      },
+    },
   },
   mounted: function mounted() {
     this.scrollToSelected(0);
@@ -2422,7 +2914,9 @@ var script$6 = {
     getHoursList: function getHoursList() {
       var _this2 = this;
 
-      return generateOptions(this.use12h ? 12 : 24, this.hourStep, this.hourOptions).map(function (num) {
+      return generateOptions(this.use12h ? 12 : 24, this.hourStep, this.hourOptions).map(function(
+        num
+      ) {
         var date = new Date(_this2.date);
         var text = padNumber(num);
 
@@ -2439,41 +2933,41 @@ var script$6 = {
         var value = date.setHours(num);
         return {
           value: value,
-          text: text
+          text: text,
         };
       });
     },
     getMinutesList: function getMinutesList() {
       var _this3 = this;
 
-      return generateOptions(60, this.minuteStep, this.minuteOptions).map(function (num) {
+      return generateOptions(60, this.minuteStep, this.minuteOptions).map(function(num) {
         var value = new Date(_this3.date).setMinutes(num);
         return {
           value: value,
-          text: padNumber(num)
+          text: padNumber(num),
         };
       });
     },
     getSecondsList: function getSecondsList() {
       var _this4 = this;
 
-      return generateOptions(60, this.secondStep, this.secondOptions).map(function (num) {
+      return generateOptions(60, this.secondStep, this.secondOptions).map(function(num) {
         var value = new Date(_this4.date).setSeconds(num);
         return {
           value: value,
-          text: padNumber(num)
+          text: padNumber(num),
         };
       });
     },
     getAMPMList: function getAMPMList() {
       var _this5 = this;
 
-      return ['AM', 'PM'].map(function (text, i) {
+      return ['AM', 'PM'].map(function(text, i) {
         var date = new Date(_this5.date);
-        var value = date.setHours(date.getHours() % 12 + i * 12);
+        var value = date.setHours((date.getHours() % 12) + i * 12);
         return {
           text: text,
-          value: value
+          value: value,
         };
       });
     },
@@ -2492,15 +2986,15 @@ var script$6 = {
     },
     handleSelect: function handleSelect(evt) {
       var target = evt.target,
-          currentTarget = evt.currentTarget;
+        currentTarget = evt.currentTarget;
       if (target.tagName.toUpperCase() !== 'LI') return;
       var type = currentTarget.getAttribute('data-type');
       var colIndex = parseInt(currentTarget.getAttribute('data-index'), 10);
       var cellIndex = parseInt(target.getAttribute('data-index'), 10);
       var value = this.columns[colIndex].list[cellIndex].value;
       this.$emit('select', value, type);
-    }
-  }
+    },
+  },
 };
 
 /* script */
@@ -2514,31 +3008,51 @@ var __vue_render__$9 = function __vue_render__() {
 
   var _c = _vm._self._c || _h;
 
-  return _c('div', {
-    class: _vm.prefixClass + "-time-columns"
-  }, _vm._l(_vm.columns, function (col, i) {
-    return _c('scrollbar-vertical', {
-      key: i,
-      class: _vm.prefixClass + "-time-column"
-    }, [_c('ul', {
-      class: _vm.prefixClass + "-time-list",
-      attrs: {
-        "data-type": col.type,
-        "data-index": i
-      },
-      on: {
-        "click": _vm.handleSelect
-      }
-    }, _vm._l(col.list, function (item, j) {
-      return _c('li', {
-        key: item.value,
-        class: [_vm.prefixClass + "-time-item", _vm.getClasses(item.value, col.type)],
-        attrs: {
-          "data-index": j
-        }
-      }, [_vm._v("\n        " + _vm._s(item.text) + "\n      ")]);
-    }), 0)]);
-  }), 1);
+  return _c(
+    'div',
+    {
+      class: _vm.prefixClass + '-time-columns',
+    },
+    _vm._l(_vm.columns, function(col, i) {
+      return _c(
+        'scrollbar-vertical',
+        {
+          key: i,
+          class: _vm.prefixClass + '-time-column',
+        },
+        [
+          _c(
+            'ul',
+            {
+              class: _vm.prefixClass + '-time-list',
+              attrs: {
+                'data-type': col.type,
+                'data-index': i,
+              },
+              on: {
+                click: _vm.handleSelect,
+              },
+            },
+            _vm._l(col.list, function(item, j) {
+              return _c(
+                'li',
+                {
+                  key: item.value,
+                  class: [_vm.prefixClass + '-time-item', _vm.getClasses(item.value, col.type)],
+                  attrs: {
+                    'data-index': j,
+                  },
+                },
+                [_vm._v('\n        ' + _vm._s(item.text) + '\n      ')]
+              );
+            }),
+            0
+          ),
+        ]
+      );
+    }),
+    1
+  );
 };
 
 var __vue_staticRenderFns__$9 = [];
@@ -2560,10 +3074,21 @@ var __vue_is_functional_template__$9 = false;
 
 /* style inject shadow dom */
 
-var __vue_component__$9 = normalizeComponent({
-  render: __vue_render__$9,
-  staticRenderFns: __vue_staticRenderFns__$9
-}, __vue_inject_styles__$9, __vue_script__$6, __vue_scope_id__$9, __vue_is_functional_template__$9, __vue_module_identifier__$9, false, undefined, undefined, undefined);
+var __vue_component__$9 = normalizeComponent(
+  {
+    render: __vue_render__$9,
+    staticRenderFns: __vue_staticRenderFns__$9,
+  },
+  __vue_inject_styles__$9,
+  __vue_script__$6,
+  __vue_scope_id__$9,
+  __vue_is_functional_template__$9,
+  __vue_module_identifier__$9,
+  false,
+  undefined,
+  undefined,
+  undefined
+);
 
 //
 
@@ -2576,7 +3101,7 @@ function parseOption() {
     var minutes = parseInt(values[1], 10);
     return {
       hours: hours,
-      minutes: minutes
+      minutes: minutes,
     };
   }
 
@@ -2592,17 +3117,17 @@ var scrollTo$1 = function scrollTo(element, to) {
 var script$7 = {
   name: 'ListOptions',
   components: {
-    ScrollbarVertical: __vue_component__$8
+    ScrollbarVertical: __vue_component__$8,
   },
   inject: {
     getLocale: {
       default: function _default() {
         return getLocale;
-      }
+      },
     },
     prefixClass: {
-      default: 'mx'
-    }
+      default: 'mx',
+    },
   },
   props: {
     date: Date,
@@ -2610,18 +3135,18 @@ var script$7 = {
       type: [Object, Function],
       default: function _default() {
         return [];
-      }
+      },
     },
     format: {
       type: String,
-      default: 'HH:mm:ss'
+      default: 'HH:mm:ss',
     },
     getClasses: {
       type: Function,
       default: function _default() {
         return [];
-      }
-    }
+      },
+    },
   },
   computed: {
     list: function list() {
@@ -2650,13 +3175,13 @@ var script$7 = {
           var value = new Date(this.date).setHours(hours, minutes, 0);
           result.push({
             value: value,
-            text: this.formatDate(value, fmt)
+            text: this.formatDate(value, fmt),
           });
         }
       }
 
       return result;
-    }
+    },
   },
   mounted: function mounted() {
     this.scrollToSelected();
@@ -2664,7 +3189,7 @@ var script$7 = {
   methods: {
     formatDate: function formatDate(date, fmt) {
       return format(date, fmt, {
-        locale: this.getLocale().formatLocale
+        locale: this.getLocale().formatLocale,
       });
     },
     scrollToSelected: function scrollToSelected() {
@@ -2677,8 +3202,8 @@ var script$7 = {
     },
     handleSelect: function handleSelect(value) {
       this.$emit('select', value, 'time');
-    }
-  }
+    },
+  },
 };
 
 /* script */
@@ -2692,17 +3217,25 @@ var __vue_render__$a = function __vue_render__() {
 
   var _c = _vm._self._c || _h;
 
-  return _c('scrollbar-vertical', _vm._l(_vm.list, function (item) {
-    return _c('div', {
-      key: item.value,
-      class: [_vm.prefixClass + "-time-option", _vm.getClasses(item.value)],
-      on: {
-        "click": function click($event) {
-          return _vm.handleSelect(item.value);
-        }
-      }
-    }, [_vm._v("\n    " + _vm._s(item.text) + "\n  ")]);
-  }), 0);
+  return _c(
+    'scrollbar-vertical',
+    _vm._l(_vm.list, function(item) {
+      return _c(
+        'div',
+        {
+          key: item.value,
+          class: [_vm.prefixClass + '-time-option', _vm.getClasses(item.value)],
+          on: {
+            click: function click($event) {
+              return _vm.handleSelect(item.value);
+            },
+          },
+        },
+        [_vm._v('\n    ' + _vm._s(item.text) + '\n  ')]
+      );
+    }),
+    0
+  );
 };
 
 var __vue_staticRenderFns__$a = [];
@@ -2724,27 +3257,38 @@ var __vue_is_functional_template__$a = false;
 
 /* style inject shadow dom */
 
-var __vue_component__$a = normalizeComponent({
-  render: __vue_render__$a,
-  staticRenderFns: __vue_staticRenderFns__$a
-}, __vue_inject_styles__$a, __vue_script__$7, __vue_scope_id__$a, __vue_is_functional_template__$a, __vue_module_identifier__$a, false, undefined, undefined, undefined);
+var __vue_component__$a = normalizeComponent(
+  {
+    render: __vue_render__$a,
+    staticRenderFns: __vue_staticRenderFns__$a,
+  },
+  __vue_inject_styles__$a,
+  __vue_script__$7,
+  __vue_scope_id__$a,
+  __vue_is_functional_template__$a,
+  __vue_module_identifier__$a,
+  false,
+  undefined,
+  undefined,
+  undefined
+);
 
 //
 var script$8 = {
   name: 'TimePanel',
   components: {
     ListColumns: __vue_component__$9,
-    ListOptions: __vue_component__$a
+    ListOptions: __vue_component__$a,
   },
   inject: {
     getLocale: {
       default: function _default() {
         return getLocale;
-      }
+      },
     },
     prefixClass: {
-      default: 'mx'
-    }
+      default: 'mx',
+    },
   },
   props: {
     value: {},
@@ -2753,70 +3297,70 @@ var script$8 = {
         var date = new Date();
         date.setHours(0, 0, 0, 0);
         return date;
-      }
+      },
     },
     format: {
-      default: 'HH:mm:ss'
+      default: 'HH:mm:ss',
     },
     timeTitleFormat: {
       type: String,
-      default: 'YYYY-MM-DD'
+      default: 'YYYY-MM-DD',
     },
     showTimeHeader: {
       type: Boolean,
-      default: false
+      default: false,
     },
     disabledTime: {
       type: Function,
       default: function _default() {
         return false;
-      }
+      },
     },
     timePickerOptions: {
       type: [Object, Function],
       default: function _default() {
         return null;
-      }
+      },
     },
     hourOptions: Array,
     minuteOptions: Array,
     secondOptions: Array,
     hourStep: {
       type: Number,
-      default: 1
+      default: 1,
     },
     minuteStep: {
       type: Number,
-      default: 1
+      default: 1,
     },
     secondStep: {
       type: Number,
-      default: 1
+      default: 1,
     },
     showHour: {
       type: Boolean,
-      default: undefined
+      default: undefined,
     },
     showMinute: {
       type: Boolean,
-      default: undefined
+      default: undefined,
     },
     showSecond: {
       type: Boolean,
-      default: undefined
+      default: undefined,
     },
     use12h: {
       type: Boolean,
-      default: undefined
+      default: undefined,
     },
     scrollDuration: {
       type: Number,
-      default: 100
-    }
+      default: 100,
+    },
   },
   data: function data() {
     return {
-      innerValue: getValidDate(this.value, this.defaultValue)
+      innerValue: getValidDate(this.value, this.defaultValue),
     };
   },
   computed: {
@@ -2836,27 +3380,27 @@ var script$8 = {
         showHour: /[HhKk]/.test(fmt),
         showMinute: /m/.test(fmt),
         showSecond: /s/.test(fmt),
-        use12h: /a/i.test(fmt)
+        use12h: /a/i.test(fmt),
       };
       var obj = {};
-      Object.keys(defaultProps).forEach(function (key) {
+      Object.keys(defaultProps).forEach(function(key) {
         obj[key] = typeof _this[key] === 'boolean' ? _this[key] : defaultProps[key];
       });
       return obj;
-    }
+    },
   },
   watch: {
     value: {
       immediate: true,
       handler: function handler() {
         this.innerValue = getValidDate(this.value, this.defaultValue);
-      }
-    }
+      },
+    },
   },
   methods: {
     formatDate: function formatDate(date, fmt) {
       return format(date, fmt, {
-        locale: this.getLocale().formatLocale
+        locale: this.getLocale().formatLocale,
       });
     },
     isDisabledTime: function isDisabledTime(value) {
@@ -2864,11 +3408,19 @@ var script$8 = {
     },
     isDisabledHour: function isDisabledHour(date) {
       var value = new Date(date);
-      return this.isDisabledTime(value) && this.isDisabledTime(value.setMinutes(0, 0, 0)) && this.isDisabledTime(value.setMinutes(59, 59, 999));
+      return (
+        this.isDisabledTime(value) &&
+        this.isDisabledTime(value.setMinutes(0, 0, 0)) &&
+        this.isDisabledTime(value.setMinutes(59, 59, 999))
+      );
     },
     isDisabledMinute: function isDisabledMinute(date) {
       var value = new Date(date);
-      return this.isDisabledTime(value) && this.isDisabledTime(value.setSeconds(0, 0)) && this.isDisabledTime(value.setSeconds(59, 999));
+      return (
+        this.isDisabledTime(value) &&
+        this.isDisabledTime(value.setSeconds(0, 0)) &&
+        this.isDisabledTime(value.setSeconds(59, 999))
+      );
     },
     isDisabled: function isDisabled(date, type) {
       if (type === 'hour') {
@@ -2907,8 +3459,8 @@ var script$8 = {
       }
 
       return '';
-    }
-  }
+    },
+  },
 };
 
 /* script */
@@ -2922,46 +3474,89 @@ var __vue_render__$b = function __vue_render__() {
 
   var _c = _vm._self._c || _h;
 
-  return _c('div', {
-    class: _vm.prefixClass + "-time"
-  }, [_vm.showTimeHeader ? _c('div', {
-    class: _vm.prefixClass + "-time-header"
-  }, [_c('button', {
-    class: _vm.prefixClass + "-btn " + _vm.prefixClass + "-btn-text " + _vm.prefixClass + "-time-header-title",
-    attrs: {
-      "type": "button"
+  return _c(
+    'div',
+    {
+      class: _vm.prefixClass + '-time',
     },
-    on: {
-      "click": _vm.handleClickTitle
-    }
-  }, [_vm._v("\n      " + _vm._s(_vm.title) + "\n    ")])]) : _vm._e(), _vm._v(" "), _c('div', {
-    class: _vm.prefixClass + "-time-content"
-  }, [_vm.timePickerOptions ? _c('list-options', {
-    attrs: {
-      "date": _vm.innerValue,
-      "get-classes": _vm.getClasses,
-      "options": _vm.timePickerOptions,
-      "format": _vm.innerForamt
-    },
-    on: {
-      "select": _vm.handleSelect
-    }
-  }) : _c('list-columns', _vm._b({
-    attrs: {
-      "date": _vm.innerValue,
-      "get-classes": _vm.getClasses,
-      "hour-options": _vm.hourOptions,
-      "minute-options": _vm.minuteOptions,
-      "second-options": _vm.secondOptions,
-      "hour-step": _vm.hourStep,
-      "minute-step": _vm.minuteStep,
-      "second-step": _vm.secondStep,
-      "scroll-duration": _vm.scrollDuration
-    },
-    on: {
-      "select": _vm.handleSelect
-    }
-  }, 'list-columns', _vm.ShowHourMinuteSecondAMPM, false))], 1)]);
+    [
+      _vm.showTimeHeader
+        ? _c(
+            'div',
+            {
+              class: _vm.prefixClass + '-time-header',
+            },
+            [
+              _c(
+                'button',
+                {
+                  class:
+                    _vm.prefixClass +
+                    '-btn ' +
+                    _vm.prefixClass +
+                    '-btn-text ' +
+                    _vm.prefixClass +
+                    '-time-header-title',
+                  attrs: {
+                    type: 'button',
+                  },
+                  on: {
+                    click: _vm.handleClickTitle,
+                  },
+                },
+                [_vm._v('\n      ' + _vm._s(_vm.title) + '\n    ')]
+              ),
+            ]
+          )
+        : _vm._e(),
+      _vm._v(' '),
+      _c(
+        'div',
+        {
+          class: _vm.prefixClass + '-time-content',
+        },
+        [
+          _vm.timePickerOptions
+            ? _c('list-options', {
+                attrs: {
+                  date: _vm.innerValue,
+                  'get-classes': _vm.getClasses,
+                  options: _vm.timePickerOptions,
+                  format: _vm.innerForamt,
+                },
+                on: {
+                  select: _vm.handleSelect,
+                },
+              })
+            : _c(
+                'list-columns',
+                _vm._b(
+                  {
+                    attrs: {
+                      date: _vm.innerValue,
+                      'get-classes': _vm.getClasses,
+                      'hour-options': _vm.hourOptions,
+                      'minute-options': _vm.minuteOptions,
+                      'second-options': _vm.secondOptions,
+                      'hour-step': _vm.hourStep,
+                      'minute-step': _vm.minuteStep,
+                      'second-step': _vm.secondStep,
+                      'scroll-duration': _vm.scrollDuration,
+                    },
+                    on: {
+                      select: _vm.handleSelect,
+                    },
+                  },
+                  'list-columns',
+                  _vm.ShowHourMinuteSecondAMPM,
+                  false
+                )
+              ),
+        ],
+        1
+      ),
+    ]
+  );
 };
 
 var __vue_staticRenderFns__$b = [];
@@ -2983,23 +3578,34 @@ var __vue_is_functional_template__$b = false;
 
 /* style inject shadow dom */
 
-var __vue_component__$b = normalizeComponent({
-  render: __vue_render__$b,
-  staticRenderFns: __vue_staticRenderFns__$b
-}, __vue_inject_styles__$b, __vue_script__$8, __vue_scope_id__$b, __vue_is_functional_template__$b, __vue_module_identifier__$b, false, undefined, undefined, undefined);
+var __vue_component__$b = normalizeComponent(
+  {
+    render: __vue_render__$b,
+    staticRenderFns: __vue_staticRenderFns__$b,
+  },
+  __vue_inject_styles__$b,
+  __vue_script__$8,
+  __vue_scope_id__$b,
+  __vue_is_functional_template__$b,
+  __vue_module_identifier__$b,
+  false,
+  undefined,
+  undefined,
+  undefined
+);
 
 var TimeRange = {
   name: 'TimeRange',
   inject: {
     prefixClass: {
-      default: 'mx'
-    }
+      default: 'mx',
+    },
   },
   props: _objectSpread2({}, __vue_component__$b.props),
   data: function data() {
     return {
       startValue: new Date(NaN),
-      endValue: new Date(NaN)
+      endValue: new Date(NaN),
     };
   },
   watch: {
@@ -3008,8 +3614,8 @@ var TimeRange = {
       handler: function handler() {
         if (isValidRangeDate(this.value)) {
           var _this$value = _slicedToArray(this.value, 2),
-              startValue = _this$value[0],
-              endValue = _this$value[1];
+            startValue = _this$value[0],
+            endValue = _this$value[1];
 
           this.startValue = startValue;
           this.endValue = endValue;
@@ -3017,8 +3623,8 @@ var TimeRange = {
           this.startValue = new Date(NaN);
           this.endValue = new Date(NaN);
         }
-      }
-    }
+      },
+    },
   },
   methods: {
     emitChange: function emitChange(type, index) {
@@ -3049,65 +3655,86 @@ var TimeRange = {
     },
     disabledEndTime: function disabledEndTime(date) {
       return date.getTime() < this.startValue.getTime() || this.disabledTime(date, 1);
-    }
+    },
   },
   render: function render() {
     var h = arguments[0];
-    var defaultValues = Array.isArray(this.defaultValue) ? this.defaultValue : [this.defaultValue, this.defaultValue];
+    var defaultValues = Array.isArray(this.defaultValue)
+      ? this.defaultValue
+      : [this.defaultValue, this.defaultValue];
     var prefixClass = this.prefixClass;
-    return h("div", {
-      "class": "".concat(prefixClass, "-range-wrapper")
-    }, [h(__vue_component__$b, {
-      "props": _objectSpread2({}, _objectSpread2({}, this.$props, {
-        value: this.startValue,
-        defaultValue: defaultValues[0],
-        disabledTime: this.disabledStartTime
-      })),
-      "on": _objectSpread2({}, _objectSpread2({}, this.$listeners, {
-        select: this.handleSelectStart
-      }))
-    }), h(__vue_component__$b, {
-      "props": _objectSpread2({}, _objectSpread2({}, this.$props, {
-        value: this.endValue,
-        defaultValue: defaultValues[1],
-        disabledTime: this.disabledEndTime
-      })),
-      "on": _objectSpread2({}, _objectSpread2({}, this.$listeners, {
-        select: this.handleSelectEnd
-      }))
-    })]);
-  }
+    return h(
+      'div',
+      {
+        class: ''.concat(prefixClass, '-range-wrapper'),
+      },
+      [
+        h(__vue_component__$b, {
+          props: _objectSpread2(
+            {},
+            _objectSpread2({}, this.$props, {
+              value: this.startValue,
+              defaultValue: defaultValues[0],
+              disabledTime: this.disabledStartTime,
+            })
+          ),
+          on: _objectSpread2(
+            {},
+            _objectSpread2({}, this.$listeners, {
+              select: this.handleSelectStart,
+            })
+          ),
+        }),
+        h(__vue_component__$b, {
+          props: _objectSpread2(
+            {},
+            _objectSpread2({}, this.$props, {
+              value: this.endValue,
+              defaultValue: defaultValues[1],
+              disabledTime: this.disabledEndTime,
+            })
+          ),
+          on: _objectSpread2(
+            {},
+            _objectSpread2({}, this.$listeners, {
+              select: this.handleSelectEnd,
+            })
+          ),
+        }),
+      ]
+    );
+  },
 };
 
 var DatetimePanel = {
   name: 'DatetimePanel',
   inject: {
     prefixClass: {
-      default: 'mx'
-    }
+      default: 'mx',
+    },
   },
   emits: ['select', 'update:show-time-panel'],
   props: _objectSpread2({}, CalendarPanel.props, {}, __vue_component__$b.props, {
     showTimePanel: {
       type: Boolean,
-      default: undefined
-    }
+      default: undefined,
+    },
   }),
   data: function data() {
     return {
       defaultTimeVisible: false,
-      currentValue: this.value
+      currentValue: this.value,
     };
   },
   computed: {
     timeVisible: function timeVisible() {
       return typeof this.showTimePanel === 'boolean' ? this.showTimePanel : this.defaultTimeVisible;
-    }
+    },
   },
   watch: {
     value: function value(val) {
       this.currentValue = val;
-    }
+    },
   },
   methods: {
     closeTimePanel: function closeTimePanel() {
@@ -3140,65 +3767,75 @@ var DatetimePanel = {
       }
 
       this.emitDate(datetime, type);
-    }
+    },
   },
   render: function render() {
     var h = arguments[0];
     var calendarProps = {
       props: _objectSpread2({}, pick(this.$props, Object.keys(CalendarPanel.props)), {
         type: 'date',
-        value: this.currentValue
+        value: this.currentValue,
       }),
       on: {
-        select: this.handleSelect
-      }
+        select: this.handleSelect,
+      },
     };
     var timeProps = {
       props: _objectSpread2({}, pick(this.$props, Object.keys(__vue_component__$b.props)), {
         showTimeHeader: true,
-        value: this.currentValue
+        value: this.currentValue,
       }),
       on: {
         select: this.emitDate,
-        clicktitle: this.closeTimePanel
-      }
+        clicktitle: this.closeTimePanel,
+      },
     };
     var prefixClass = this.prefixClass;
-    return h("div", [h(CalendarPanel, helper([{}, calendarProps])), this.timeVisible && h(__vue_component__$b, helper([{
-      "class": "".concat(prefixClass, "-calendar-time")
-    }, timeProps]))]);
-  }
+    return h('div', [
+      h(CalendarPanel, helper([{}, calendarProps])),
+      this.timeVisible &&
+        h(
+          __vue_component__$b,
+          helper([
+            {
+              class: ''.concat(prefixClass, '-calendar-time'),
+            },
+            timeProps,
+          ])
+        ),
+    ]);
+  },
 };
 
 var DatetimeRange = {
   name: 'DatetimeRange',
   inject: {
     prefixClass: {
-      default: 'mx'
-    }
+      default: 'mx',
+    },
   },
   emits: ['select', 'update:show-time-panel'],
   props: _objectSpread2({}, CalendarRange.props, {}, TimeRange.props, {
     showTimePanel: {
       type: Boolean,
-      default: undefined
-    }
+      default: undefined,
+    },
   }),
   data: function data() {
     return {
       defaultTimeVisible: false,
-      currentValue: this.value
+      currentValue: this.value,
     };
   },
   computed: {
     timeVisible: function timeVisible() {
       return typeof this.showTimePanel === 'boolean' ? this.showTimePanel : this.defaultTimeVisible;
-    }
+    },
   },
   watch: {
     value: function value(val) {
       this.currentValue = val;
-    }
+    },
   },
   methods: {
     closeTimePanel: function closeTimePanel() {
@@ -3219,8 +3856,10 @@ var DatetimeRange = {
         this.openTimePanel();
       }
 
-      var defaultValues = Array.isArray(this.defaultValue) ? this.defaultValue : [this.defaultValue, this.defaultValue];
-      var datetimes = dates.map(function (date, i) {
+      var defaultValues = Array.isArray(this.defaultValue)
+        ? this.defaultValue
+        : [this.defaultValue, this.defaultValue];
+      var datetimes = dates.map(function(date, i) {
         var time = isValidRangeDate(_this.value) ? _this.value[i] : defaultValues[i];
         return assignTime(date, time);
       });
@@ -3230,7 +3869,7 @@ var DatetimeRange = {
       }
 
       if (datetimes.some(this.disabledTime)) {
-        datetimes = dates.map(function (date, i) {
+        datetimes = dates.map(function(date, i) {
           return assignTime(date, defaultValues[i]);
         });
 
@@ -3241,45 +3880,55 @@ var DatetimeRange = {
       }
 
       this.emitDate(datetimes, type);
-    }
+    },
   },
   render: function render() {
     var h = arguments[0];
     var calendarProps = {
       props: _objectSpread2({}, pick(this.$props, Object.keys(CalendarRange.props)), {
         type: 'date',
-        value: this.currentValue
+        value: this.currentValue,
       }),
       on: {
-        select: this.handleSelect
-      }
+        select: this.handleSelect,
+      },
     };
     var timeProps = {
       props: _objectSpread2({}, pick(this.$props, Object.keys(TimeRange.props)), {
         value: this.currentValue,
-        showTimeHeader: true
+        showTimeHeader: true,
       }),
       on: {
         select: this.emitDate,
-        clicktitle: this.closeTimePanel
-      }
+        clicktitle: this.closeTimePanel,
+      },
     };
     var prefixClass = this.prefixClass;
-    return h("div", [h(CalendarRange, helper([{}, calendarProps])), this.timeVisible && h(TimeRange, helper([{
-      "class": "".concat(prefixClass, "-calendar-time")
-    }, timeProps]))]);
-  }
+    return h('div', [
+      h(CalendarRange, helper([{}, calendarProps])),
+      this.timeVisible &&
+        h(
+          TimeRange,
+          helper([
+            {
+              class: ''.concat(prefixClass, '-calendar-time'),
+            },
+            timeProps,
+          ])
+        ),
+    ]);
+  },
 };
 
 var componentMap = {
   default: CalendarPanel,
   time: __vue_component__$b,
-  datetime: DatetimePanel
+  datetime: DatetimePanel,
 };
 var componentRangeMap = {
   default: CalendarRange,
   time: TimeRange,
-  datetime: DatetimeRange
+  datetime: DatetimeRange,
 };
 var DatePicker = {
   name: 'DatePicker',
@@ -3293,120 +3942,128 @@ var DatePicker = {
       },
       getWeek: this.getWeek,
       prefixClass: this.prefixClass,
-      dispatchDatePicker: this.$emit.bind(this)
+      dispatchDatePicker: this.$emit.bind(this),
     };
   },
   props: _objectSpread2({}, DatetimePanel.props, {
     value: {},
     valueType: {
       type: String,
-      default: 'date' // date, format, timestamp, or token like 'YYYY-MM-DD'
-
+      default: 'date', // date, format, timestamp, or token like 'YYYY-MM-DD'
     },
     type: {
       type: String,
       // ['date', 'datetime', 'time', 'year', 'month', 'week']
-      default: 'date'
+      default: 'date',
     },
     format: {
-      type: String
+      type: String,
+    },
+    additionalFormats: {
+      type: Array,
+      default: function _default() {
+        return [];
+      },
     },
     formatter: {
-      type: Object
+      type: Object,
     },
     range: {
       type: Boolean,
-      default: false
+      default: false,
     },
     multiple: {
       type: Boolean,
-      default: false
+      default: false,
     },
     rangeSeparator: {
-      type: String
+      type: String,
     },
     lang: {
-      type: [String, Object]
+      type: [String, Object],
     },
     name: {
       type: String,
-      default: 'date'
+      default: 'date',
     },
     placeholder: {
       type: String,
-      default: ''
+      default: '',
     },
     editable: {
       type: Boolean,
-      default: true
+      default: true,
     },
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     clearable: {
       type: Boolean,
-      default: true
+      default: true,
     },
     prefixClass: {
       type: String,
-      default: 'mx'
+      default: 'mx',
     },
     inputClass: {},
     inputAttr: {
       type: Object,
       default: function _default() {
         return {};
-      }
+      },
     },
     appendToBody: {
       type: Boolean,
-      default: true
+      default: true,
     },
     open: {
       type: Boolean,
-      default: undefined
+      default: undefined,
     },
     popupClass: {},
     popupStyle: {
       type: Object,
       default: function _default() {
         return {};
-      }
+      },
     },
     inline: {
       type: Boolean,
-      default: false
+      default: false,
     },
     confirm: {
       type: Boolean,
-      default: false
+      default: false,
     },
     confirmText: {
       type: String,
-      default: 'OK'
+      default: 'OK',
     },
     renderInputText: {
-      type: Function
+      type: Function,
     },
     shortcuts: {
       type: Array,
       validator: function validator(value) {
-        return Array.isArray(value) && value.every(function (v) {
-          return isObject(v) && typeof v.text === 'string' && typeof v.onClick === 'function';
-        });
+        return (
+          Array.isArray(value) &&
+          value.every(function(v) {
+            return isObject(v) && typeof v.text === 'string' && typeof v.onClick === 'function';
+          })
+        );
       },
       default: function _default() {
         return [];
-      }
-    }
+      },
+    },
   }),
   data: function data() {
     return {
       // cache the innervalue, wait to confirm
       currentValue: null,
       userInput: null,
-      defaultOpen: false
+      defaultOpen: false,
     };
   },
   computed: {
@@ -3423,9 +4080,16 @@ var DatePicker = {
         year: 'YYYY',
         month: 'YYYY-MM',
         time: 'HH:mm:ss',
-        week: 'w'
+        week: 'w',
       };
       return this.format || map[this.type] || map.date;
+    },
+    additionalInnerFormats: function additionalInnerFormats() {
+      var _this2 = this;
+
+      return this.additionalFormats.map(function(additionalFormat) {
+        return _this2.getInnerFormat(additionalFormat);
+      });
     },
     innerValue: function innerValue() {
       var value = this.value;
@@ -3443,7 +4107,7 @@ var DatePicker = {
       return this.value2date(value);
     },
     text: function text() {
-      var _this2 = this;
+      var _this3 = this;
 
       if (this.userInput !== null) {
         return this.userInput;
@@ -3458,9 +4122,11 @@ var DatePicker = {
       }
 
       if (Array.isArray(this.innerValue)) {
-        return this.innerValue.map(function (v) {
-          return _this2.formatDate(v);
-        }).join(this.innerRangeSeparator);
+        return this.innerValue
+          .map(function(v) {
+            return _this3.formatDate(v);
+          })
+          .join(this.innerRangeSeparator);
       }
 
       return this.formatDate(this.innerValue);
@@ -3478,26 +4144,28 @@ var DatePicker = {
     validMultipleType: function validMultipleType() {
       var types = ['date', 'month', 'year'];
       return this.multiple && !this.range && types.indexOf(this.type) !== -1;
-    }
+    },
   },
   watch: {
     innerValue: {
       immediate: true,
       handler: function handler(val) {
         this.currentValue = val;
-      }
+      },
     },
     popupVisible: {
       handler: function handler(val) {
         if (val) {
           this.currentValue = this.innerValue;
         }
-      }
-    }
+      },
+    },
   },
   created: function created() {
     if (_typeof(this.format) === 'object') {
-      console.warn("[vue2-datepicker]: The prop `format` don't support Object any more. You can use the new prop `formatter` to replace it");
+      console.warn(
+        "[vue2-datepicker]: The prop `format` don't support Object any more. You can use the new prop `formatter` to replace it"
+      );
     }
   },
   methods: {
@@ -3509,7 +4177,10 @@ var DatePicker = {
       }
     },
     getFormatter: function getFormatter(key) {
-      return isObject(this.formatter) && this.formatter[key] || isObject(this.format) && this.format[key];
+      return (
+        (isObject(this.formatter) && this.formatter[key]) ||
+        (isObject(this.format) && this.format[key])
+      );
     },
     getWeek: function getWeek$1(date, options) {
       if (typeof this.getFormatter('getWeek') === 'function') {
@@ -3518,18 +4189,24 @@ var DatePicker = {
 
       return getWeek(date, options);
     },
-    parseDate: function parseDate(value, fmt) {
-      fmt = fmt || this.innerFormat;
+    parseDate: function parseDate(value, inFormat) {
+      var fmt = inFormat || this.innerFormat;
 
       if (typeof this.getFormatter('parse') === 'function') {
         return this.getFormatter('parse')(value, fmt);
       }
 
       var backupDate = new Date();
-      return parse(value, fmt, {
+      var formats = [fmt];
+
+      if (!inFormat) {
+        formats = formats.concat(this.additionalInnerFormats);
+      }
+
+      return parseMultiFormats(value, formats, {
         locale: this.locale.formatLocale,
-        backupDate: backupDate
-      });
+        backupDate: backupDate,
+      }); // return parse(value, fmt, { locale: this.locale.formatLocale, backupDate });
     },
     formatDate: function formatDate(date, fmt) {
       fmt = fmt || this.innerFormat;
@@ -3539,7 +4216,7 @@ var DatePicker = {
       }
 
       return format(date, fmt, {
-        locale: this.locale.formatLocale
+        locale: this.locale.formatLocale,
       });
     },
     // transform the outer value to inner date
@@ -3606,24 +4283,30 @@ var DatePicker = {
         return false;
       }
 
-      var disabledDate = typeof this.disabledDate === 'function' ? this.disabledDate : function () {
-        return false;
-      };
-      var disabledTime = typeof this.disabledTime === 'function' ? this.disabledTime : function () {
-        return false;
-      };
+      var disabledDate =
+        typeof this.disabledDate === 'function'
+          ? this.disabledDate
+          : function() {
+              return false;
+            };
+      var disabledTime =
+        typeof this.disabledTime === 'function'
+          ? this.disabledTime
+          : function() {
+              return false;
+            };
 
       if (!Array.isArray(value)) {
         value = [value];
       }
 
-      return value.every(function (v) {
+      return value.every(function(v) {
         return !disabledDate(v) && !disabledTime(v);
       });
     },
     handleMultipleDates: function handleMultipleDates(date, dates) {
       if (this.validMultipleType && dates) {
-        var nextDates = dates.filter(function (v) {
+        var nextDates = dates.filter(function(v) {
           return v.getTime() !== date.getTime();
         });
 
@@ -3642,8 +4325,11 @@ var DatePicker = {
       if (this.confirm) {
         this.currentValue = val;
       } else {
-        this.emitValue(val, type, // this.type === 'datetime', click the time should close popup
-        !this.validMultipleType && (type === this.type || type === 'time'));
+        this.emitValue(
+          val,
+          type, // this.type === 'datetime', click the time should close popup
+          !this.validMultipleType && (type === this.type || type === 'time')
+        );
       }
     },
     clear: function clear() {
@@ -3694,7 +4380,7 @@ var DatePicker = {
       }
     },
     handleInputChange: function handleInputChange() {
-      var _this3 = this;
+      var _this4 = this;
 
       if (!this.editable || this.userInput === null) return;
       var text = this.userInput.trim();
@@ -3708,8 +4394,8 @@ var DatePicker = {
       var date;
 
       if (this.validMultipleType) {
-        date = text.split(this.innerRangeSeparator).map(function (v) {
-          return _this3.parseDate(v.trim());
+        date = text.split(this.innerRangeSeparator).map(function(v) {
+          return _this4.parseDate(v.trim());
         });
       } else if (this.range) {
         var arr = text.split(this.innerRangeSeparator);
@@ -3720,8 +4406,8 @@ var DatePicker = {
           arr = text.split(this.innerRangeSeparator.trim());
         }
 
-        date = arr.map(function (v) {
-          return _this3.parseDate(v.trim());
+        date = arr.map(function(v) {
+          return _this4.parseDate(v.trim());
         });
       } else {
         date = this.parseDate(text);
@@ -3771,54 +4457,79 @@ var DatePicker = {
       var h = this.$createElement;
       var prefixClass = this.prefixClass;
 
-      var props = _objectSpread2({
-        name: this.name,
-        type: 'text',
-        autocomplete: 'off',
-        value: this.text,
-        class: this.inputClass || "".concat(this.prefixClass, "-input"),
-        readonly: !this.editable,
-        disabled: this.disabled,
-        placeholder: this.placeholder
-      }, this.inputAttr);
+      var props = _objectSpread2(
+        {
+          name: this.name,
+          type: 'text',
+          autocomplete: 'off',
+          value: this.text,
+          class: this.inputClass || ''.concat(this.prefixClass, '-input'),
+          readonly: !this.editable,
+          disabled: this.disabled,
+          placeholder: this.placeholder,
+        },
+        this.inputAttr
+      );
 
       var value = props.value,
-          className = props.class,
-          attrs = _objectWithoutProperties(props, ["value", "class"]);
+        className = props.class,
+        attrs = _objectWithoutProperties(props, ['value', 'class']);
 
       var events = {
         keydown: this.handleInputKeydown,
         focus: this.handleInputFocus,
         blur: this.handleInputBlur,
         input: this.handleInputInput,
-        change: this.handleInputChange
+        change: this.handleInputChange,
       };
-      var input = this.renderSlot('input', h("input", {
-        "domProps": {
-          "value": value
-        },
-        "class": className,
-        "attrs": _objectSpread2({}, attrs),
-        "on": _objectSpread2({}, events),
-        "ref": "input"
-      }), {
-        props: props,
-        events: events
-      });
+      var input = this.renderSlot(
+        'input',
+        h('input', {
+          domProps: {
+            value: value,
+          },
+          class: className,
+          attrs: _objectSpread2({}, attrs),
+          on: _objectSpread2({}, events),
+          ref: 'input',
+        }),
+        {
+          props: props,
+          events: events,
+        }
+      );
       var calendarIcon = this.type === 'time' ? h(__vue_component__$2) : h(__vue_component__$1);
-      return h("div", {
-        "class": "".concat(prefixClass, "-input-wrapper"),
-        "on": {
-          "mousedown": this.openPopup
-        }
-      }, [input, this.showClearIcon ? h("i", {
-        "class": "".concat(prefixClass, "-icon-clear"),
-        "on": {
-          "mousedown": this.handleClear
-        }
-      }, [this.renderSlot('icon-clear', h(__vue_component__$3))]) : null, h("i", {
-        "class": "".concat(prefixClass, "-icon-calendar")
-      }, [this.renderSlot('icon-calendar', calendarIcon)])]);
+      return h(
+        'div',
+        {
+          class: ''.concat(prefixClass, '-input-wrapper'),
+          on: {
+            mousedown: this.openPopup,
+          },
+        },
+        [
+          input,
+          this.showClearIcon
+            ? h(
+                'i',
+                {
+                  class: ''.concat(prefixClass, '-icon-clear'),
+                  on: {
+                    mousedown: this.handleClear,
+                  },
+                },
+                [this.renderSlot('icon-clear', h(__vue_component__$3))]
+              )
+            : null,
+          h(
+            'i',
+            {
+              class: ''.concat(prefixClass, '-icon-calendar'),
+            },
+            [this.renderSlot('icon-calendar', calendarIcon)]
+          ),
+        ]
+      );
     },
     renderContent: function renderContent() {
       var h = this.$createElement;
@@ -3826,105 +4537,194 @@ var DatePicker = {
       var Component = map[this.type] || map.default;
 
       var props = _objectSpread2({}, pick(this.$props, Object.keys(Component.props)), {
-        value: this.currentValue
+        value: this.currentValue,
       });
 
       var on = _objectSpread2({}, pick(this.$listeners, Component.emits || []), {
-        select: this.handleSelectDate
+        select: this.handleSelectDate,
       });
 
-      var content = h(Component, helper([{}, {
-        props: props,
-        on: on,
-        ref: 'picker'
-      }]));
-      return h("div", {
-        "class": "".concat(this.prefixClass, "-datepicker-body")
-      }, [this.renderSlot('content', content, {
-        value: this.currentValue,
-        emit: this.handleSelectDate
-      })]);
+      var content = h(
+        Component,
+        helper([
+          {},
+          {
+            props: props,
+            on: on,
+            ref: 'picker',
+          },
+        ])
+      );
+      return h(
+        'div',
+        {
+          class: ''.concat(this.prefixClass, '-datepicker-body'),
+        },
+        [
+          this.renderSlot('content', content, {
+            value: this.currentValue,
+            emit: this.handleSelectDate,
+          }),
+        ]
+      );
     },
     renderSidebar: function renderSidebar() {
-      var _this4 = this;
+      var _this5 = this;
 
       var h = this.$createElement;
       var prefixClass = this.prefixClass;
-      return h("div", {
-        "class": "".concat(prefixClass, "-datepicker-sidebar")
-      }, [this.renderSlot('sidebar', null, {
-        value: this.currentValue,
-        emit: this.handleSelectDate
-      }), this.shortcuts.map(function (v, i) {
-        return h("button", {
-          "key": i,
-          "attrs": {
-            "data-index": i,
-            "type": "button"
-          },
-          "class": "".concat(prefixClass, "-btn ").concat(prefixClass, "-btn-text ").concat(prefixClass, "-btn-shortcut"),
-          "on": {
-            "click": _this4.handleSelectShortcut
-          }
-        }, [v.text]);
-      })]);
+      return h(
+        'div',
+        {
+          class: ''.concat(prefixClass, '-datepicker-sidebar'),
+        },
+        [
+          this.renderSlot('sidebar', null, {
+            value: this.currentValue,
+            emit: this.handleSelectDate,
+          }),
+          this.shortcuts.map(function(v, i) {
+            return h(
+              'button',
+              {
+                key: i,
+                attrs: {
+                  'data-index': i,
+                  type: 'button',
+                },
+                class: ''
+                  .concat(prefixClass, '-btn ')
+                  .concat(prefixClass, '-btn-text ')
+                  .concat(prefixClass, '-btn-shortcut'),
+                on: {
+                  click: _this5.handleSelectShortcut,
+                },
+              },
+              [v.text]
+            );
+          }),
+        ]
+      );
     },
     renderHeader: function renderHeader() {
       var h = this.$createElement;
-      return h("div", {
-        "class": "".concat(this.prefixClass, "-datepicker-header")
-      }, [this.renderSlot('header', null, {
-        value: this.currentValue,
-        emit: this.handleSelectDate
-      })]);
+      return h(
+        'div',
+        {
+          class: ''.concat(this.prefixClass, '-datepicker-header'),
+        },
+        [
+          this.renderSlot('header', null, {
+            value: this.currentValue,
+            emit: this.handleSelectDate,
+          }),
+        ]
+      );
     },
     renderFooter: function renderFooter() {
       var h = this.$createElement;
       var prefixClass = this.prefixClass;
-      return h("div", {
-        "class": "".concat(prefixClass, "-datepicker-footer")
-      }, [this.renderSlot('footer', null, {
-        value: this.currentValue,
-        emit: this.handleSelectDate
-      }), this.confirm ? h("button", {
-        "attrs": {
-          "type": "button"
+      return h(
+        'div',
+        {
+          class: ''.concat(prefixClass, '-datepicker-footer'),
         },
-        "class": "".concat(prefixClass, "-btn ").concat(prefixClass, "-datepicker-btn-confirm"),
-        "on": {
-          "click": this.handleConfirmDate
-        }
-      }, [this.confirmText]) : null]);
-    }
+        [
+          this.renderSlot('footer', null, {
+            value: this.currentValue,
+            emit: this.handleSelectDate,
+          }),
+          this.confirm
+            ? h(
+                'button',
+                {
+                  attrs: {
+                    type: 'button',
+                  },
+                  class: ''
+                    .concat(prefixClass, '-btn ')
+                    .concat(prefixClass, '-datepicker-btn-confirm'),
+                  on: {
+                    click: this.handleConfirmDate,
+                  },
+                },
+                [this.confirmText]
+              )
+            : null,
+        ]
+      );
+    },
+    getInnerFormat: function getInnerFormat(outerFormat) {
+      var map = {
+        date: 'YYYY-MM-DD',
+        datetime: 'YYYY-MM-DD HH:mm:ss',
+        year: 'YYYY',
+        month: 'YYYY-MM',
+        time: 'HH:mm:ss',
+        week: 'w',
+      };
+      return map[outerFormat] || outerFormat;
+    },
   },
   render: function render() {
     var _class;
 
     var h = arguments[0];
     var prefixClass = this.prefixClass,
-        inline = this.inline,
-        disabled = this.disabled;
+      inline = this.inline,
+      disabled = this.disabled;
     var sidedar = this.hasSlot('sidebar') || this.shortcuts.length ? this.renderSidebar() : null;
-    var content = h("div", {
-      "class": "".concat(prefixClass, "-datepicker-content")
-    }, [this.hasSlot('header') ? this.renderHeader() : null, this.renderContent(), this.hasSlot('footer') || this.confirm ? this.renderFooter() : null]);
-    return h("div", {
-      "class": (_class = {}, _defineProperty(_class, "".concat(prefixClass, "-datepicker"), true), _defineProperty(_class, "".concat(prefixClass, "-datepicker-range"), this.range), _defineProperty(_class, "".concat(prefixClass, "-datepicker-inline"), inline), _defineProperty(_class, "disabled", disabled), _class)
-    }, [!inline ? this.renderInput() : null, !inline ? h(__vue_component__, {
-      "ref": "popup",
-      "class": this.popupClass,
-      "style": this.popupStyle,
-      "attrs": {
-        "visible": this.popupVisible,
-        "appendToBody": this.appendToBody
+    var content = h(
+      'div',
+      {
+        class: ''.concat(prefixClass, '-datepicker-content'),
       },
-      "on": {
-        "clickoutside": this.handleClickOutSide
-      }
-    }, [sidedar, content]) : h("div", {
-      "class": "".concat(prefixClass, "-datepicker-main")
-    }, [sidedar, content])]);
-  }
+      [
+        this.hasSlot('header') ? this.renderHeader() : null,
+        this.renderContent(),
+        this.hasSlot('footer') || this.confirm ? this.renderFooter() : null,
+      ]
+    );
+    return h(
+      'div',
+      {
+        class:
+          ((_class = {}),
+          _defineProperty(_class, ''.concat(prefixClass, '-datepicker'), true),
+          _defineProperty(_class, ''.concat(prefixClass, '-datepicker-range'), this.range),
+          _defineProperty(_class, ''.concat(prefixClass, '-datepicker-inline'), inline),
+          _defineProperty(_class, 'disabled', disabled),
+          _class),
+      },
+      [
+        !inline ? this.renderInput() : null,
+        !inline
+          ? h(
+              __vue_component__,
+              {
+                ref: 'popup',
+                class: this.popupClass,
+                style: this.popupStyle,
+                attrs: {
+                  visible: this.popupVisible,
+                  appendToBody: this.appendToBody,
+                },
+                on: {
+                  clickoutside: this.handleClickOutSide,
+                },
+              },
+              [sidedar, content]
+            )
+          : h(
+              'div',
+              {
+                class: ''.concat(prefixClass, '-datepicker-main'),
+              },
+              [sidedar, content]
+            ),
+      ]
+    );
+  },
 };
 
 DatePicker.locale = locale;
@@ -3943,7 +4743,7 @@ _extends(DatePicker, {
   TimePanel: __vue_component__$b,
   TimeRange: TimeRange,
   DatetimePanel: DatetimePanel,
-  DatetimeRange: DatetimeRange
+  DatetimeRange: DatetimeRange,
 });
 
 export default DatePicker;
