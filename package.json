@@ -49,7 +49,7 @@
   },
   "dependencies": {
     "date-format-parse": "^0.2.7",
-    "date-parse-multiformats": "git+https://git@github.com:likemusic/date-parse-multiformats.git#master"
+    "date-parse-multiformats": "git://github.com/likemusic/date-parse-multiformats.git#master"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
